@@ -25,13 +25,10 @@ jobs:
           node-version: "16.x"
 
       - name: Check outdated
-        run: npm outdated
-
-      - name: Run CI 🔀
-        run: npm ci
+        run: npm install -g npm-check-updates
 
       - name: Upgrade packages 🔀
-        run: npm update
+        run: npx npm-check-updates -u 
 
       - name: Commit and create PR 🔀
         uses: peter-evans/create-pull-request@v3
