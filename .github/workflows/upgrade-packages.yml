@@ -36,3 +36,6 @@ jobs:
           title: "build(deps): renovate NPM packages (automated)"
           branch: "build-deps-renovate-npm-packages-automated"
           commit-message: "build(deps): renovate NPM packages (automated)"
+          committer: "GitHub <noreply@github.com>"
+          delete-branch: true
+          base: "main"
