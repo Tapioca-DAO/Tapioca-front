@@ -20,9 +20,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: "16.x"
+          
+      - name: Install npm-check-updates
+        run: npm install -g npm-check-updates
 
       - name: Upgrade packages 🔀
-        run: npm update
+        run: npx npm-check-updates -u
 
       - name: Commit and create PR 🔀
         uses: peter-evans/create-pull-request@v3
@@ -31,5 +34,5 @@ jobs:
           branch: "build-deps-upgrade-npm-packages-automated"
           commit-message: "build(deps): upgrade NPM packages (automated)"
           committer: "GitHub <noreply@github.com>"
-          delete-branch: true
+          delete-branch: "true"
           base: "main"
