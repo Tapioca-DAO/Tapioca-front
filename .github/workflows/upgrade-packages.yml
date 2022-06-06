@@ -30,3 +30,6 @@ jobs:
           title: "build(deps): Upgrade NPM packages (automated)"
           branch: "build-deps-upgrade-npm-packages-automated"
           commit-message: "build(deps): upgrade NPM packages (automated)"
+          committer: "GitHub <noreply@github.com>"
+          delete-branch: true
+          base: "main"
