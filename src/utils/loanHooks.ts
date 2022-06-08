@@ -14,7 +14,8 @@ export const loanHooks = () => {
   const winEthereum = (window as any).ethereum;
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
-  const { mixologist, beachbar, usdc, weth } = loadContract__TEST(signer);
+  const { mixologist, yieldBox, beachbar, usdc, weth } =
+    loadContract__TEST(signer);
 
   const useWethContract = (address: string) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -120,7 +121,7 @@ export const loanHooks = () => {
 
     const checkIsApproved = async () => {
       setIsApproving(true);
-      const res = await beachbar.isApprovedForAll(address, mixologist.address);
+      const res = await yieldBox.isApprovedForAll(address, mixologist.address);
       setIsApproved(res);
       setIsApproving(false);
     };
@@ -128,10 +129,7 @@ export const loanHooks = () => {
     const approve = async () => {
       setIsApproving(true);
       try {
-        const res = await beachbar["setApprovalForAll(address,bool)"](
-          mixologist.address,
-          true
-        );
+        const res = await yieldBox.setApprovalForAll(mixologist.address, true);
 
         await res.wait();
 
@@ -166,7 +164,7 @@ export const loanHooks = () => {
 
     const getAssetInBeachbar = async () => {
       const assetId = await mixologist.assetId();
-      const balance = await beachbar.balanceOf(address, assetId);
+      const balance = await yieldBox.balanceOf(address, assetId);
       setAssetBalance(parseBigBalance(balance));
     };
 
@@ -174,12 +172,16 @@ export const loanHooks = () => {
       const lendValue = amount * 10000000000;
 
       const assetId = await mixologist.assetId();
-      const share = await beachbar.toShare(assetId, lendValue, false);
+      const share = await yieldBox.toShare(assetId, lendValue, false);
 
       try {
-        const res = await beachbar[
-          "deposit(uint256,address,address,uint256,uint256)"
-        ](assetId, address, address, lendValue, share);
+        const res = await yieldBox.depositAsset(
+          assetId,
+          address,
+          address,
+          lendValue,
+          share
+        );
 
         await res.wait();
         getAssetInBeachbar();
@@ -208,7 +210,7 @@ export const loanHooks = () => {
       const lendValue = amount * 10000000000;
 
       const assetId = await mixologist.assetId();
-      const share = await beachbar.toShare(assetId, lendValue, false);
+      const share = await yieldBox.toShare(assetId, lendValue, false);
 
       try {
         const res = await mixologist.addAsset(address, false, share);
