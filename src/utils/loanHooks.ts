@@ -48,11 +48,13 @@ export const loanHooks = () => {
 
     const checkIsApproved = async () => {
       setIsApproving(true);
-      const res = await weth["allowance(address,address)"](
-        address,
-        beachbar.address
-      );
-      setIsApproved(ethers.BigNumber.from(res ?? 0).gt(0));
+      try {
+        const res = await weth.allowance(address, beachbar.address);
+        setIsApproved(ethers.BigNumber.from(res ?? 0).gt(0));
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
+      }
       setIsApproving(false);
     };
 
@@ -98,8 +100,13 @@ export const loanHooks = () => {
 
     const updateBalance = async () => {
       setIsLoading(true);
-      const balance = await usdc.balanceOf(address);
-      setBalance(parseBigBalance(balance));
+      try {
+        const balance = await usdc.balanceOf(address);
+        setBalance(parseBigBalance(balance));
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
+      }
       setIsLoading(false);
     };
 
@@ -121,8 +128,13 @@ export const loanHooks = () => {
 
     const checkIsApproved = async () => {
       setIsApproving(true);
-      const res = await yieldBox.isApprovedForAll(address, mixologist.address);
-      setIsApproved(res);
+      try {
+        const res = await yieldBox.isApprovedForAll(address, mixologist.address);
+        setIsApproved(res);
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
+      }
       setIsApproving(false);
     };
 
