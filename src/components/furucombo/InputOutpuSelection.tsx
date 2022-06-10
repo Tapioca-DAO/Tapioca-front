@@ -16,7 +16,7 @@ import {
   OutputEstimateProps,
   PoolProps,
   AssetsOptionsProps,
-} from "@/pages/Furucombo";
+} from "@/pages/Flashloans";
 
 interface Props {
   type?: string;

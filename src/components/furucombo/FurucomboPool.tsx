@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import uuid from "uuid";
-import { ComboList, PoolProps } from "@/pages/Furucombo";
+import { ComboList, PoolProps } from "@/pages/Flashloans";
 import SelectDropdown from "@/components/SelectDropdown";
 import FurucomboTokenImage from "@/components/furucombo/FurucomboTokenImage";
 

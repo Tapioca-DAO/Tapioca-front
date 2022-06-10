@@ -56,12 +56,12 @@ const Header = () => {
             Borrow WETH with USDC
           </NavLink>
           <NavLink
-            to="/nocode"
+            to="/flashloans"
             className={({ isActive }) =>
               `px-1.5 ${isActive ? "text-custom-blue" : ""}`
             }
           >
-            furucombo
+            Flashloans
           </NavLink>
           <NavLink
             to="/loan"

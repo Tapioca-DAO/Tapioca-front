@@ -1,6 +1,6 @@
 import { FURUCOMBO_CUBES } from "@/utils/constants";
 import InputOutpuSelection from "@/components/furucombo/InputOutpuSelection";
-import { ComboList, SelectedDefi } from "@/pages/Furucombo";
+import { ComboList, SelectedDefi } from "@/pages/Flashloans";
 import Chevron from "@/images/Chevron";
 
 interface Props {

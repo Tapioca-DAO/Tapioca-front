@@ -1,4 +1,4 @@
-import { ComboList, SelectedDefi } from "@/pages/Furucombo";
+import { ComboList, SelectedDefi } from "@/pages/Flashloans";
 import { FURUCOMBO_CUBES } from "@/utils/constants";
 import formatAddress from "@/utils/formatAddress";
 import { useTranslation } from "react-i18next";
@@ -98,7 +98,7 @@ const SelectedCard = ({
           <div className="flex justify-between m-2 items-center">
             <div className="flex items-center">
               {tokenPars?.map((tokenPar) => (
-                <FurucomboTokenImage token={tokenPar} />
+                <FurucomboTokenImage token={tokenPar}  key={tokenPar}/>
               ))}
 
               <div className="ml-2 text-xl">{token}</div>
@@ -111,7 +111,7 @@ const SelectedCard = ({
               {inputOptions.map(({ token, amount }) => (
                 <div
                   className="flex justify-between items-center pb-2"
-                  key={`selected-output-${token}`}
+                  key={`selected-input-${token}`}
                 >
                   <div className="flex items-center">
                     <FurucomboTokenImage token={token} />

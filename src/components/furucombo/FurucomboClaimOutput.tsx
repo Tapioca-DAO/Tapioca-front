@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import uuid from "uuid";
-import { ComboList } from "@/pages/Furucombo";
+import { ComboList } from "@/pages/Flashloans";
 import FurucomboTokenImage from "./FurucomboTokenImage";
 
 interface Props {

@@ -71,7 +71,7 @@ export interface SelectedDefi {
   options: FeatureProps[];
 }
 
-const Furucombo = () => {
+const Flashloans = () => {
   const { t } = useTranslation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -114,7 +114,7 @@ const Furucombo = () => {
 
       <div className="md:basis-2/3 w-full">
         {combo.map((combo) => (
-          <SelectedCard {...combo} removeItem={removeItem} />
+          <SelectedCard {...combo} removeItem={removeItem} key={combo.id} />
         ))}
 
         <div className="flex items-center">
@@ -139,4 +139,4 @@ const Furucombo = () => {
   );
 };
 
-export default Furucombo;
+export default Flashloans;

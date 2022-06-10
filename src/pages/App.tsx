@@ -4,7 +4,7 @@ import { NotificationProvider } from "@/providers/NotificationContext";
 import Header from "@/components/Header";
 import Borrow from "@/pages/Borrow";
 import BorrowAssets from "@/pages/BorrowAssets";
-import Furucombo from "@/pages/Furucombo";
+import Flashloans from "@/pages/Flashloans";
 import Loan from "@/pages/Loan";
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
                   path="borrow-test"
                   element={<BorrowAssets main="WETH" collateral="USDC" />}
                 />
-                <Route path="nocode" element={<Furucombo />} />
+                <Route path="flashloans" element={<Flashloans />} />
                 <Route path="loan" element={<Loan />} />
               </Route>
             </Routes>
