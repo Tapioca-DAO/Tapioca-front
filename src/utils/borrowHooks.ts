@@ -32,7 +32,8 @@ export const borrowHooks = () => {
 
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
-  const { mixologist, beachbar, weth, usdc } = loadContract__TEST(signer);
+  const { mixologist, yieldBox, beachbar, weth, usdc } =
+    loadContract__TEST(signer);
 
   const useContract = (address: string) => {
     const [assetBalance, setAssetBalance] = useState("0");
@@ -54,14 +55,17 @@ export const borrowHooks = () => {
     const usdcDepositAndAddCollateral = async (amount = 0) => {
       const value = amount * 10000000000;
       const assetId = await mixologist.assetId();
-      const share = await beachbar.toShare(assetId, value, false);
+      const share = await yieldBox.toShare(assetId, value, false);
 
       try {
         const id = await mixologist.collateralId();
-        const depositRes = await beachbar[
-          "deposit(uint256,address,address,uint256,uint256)"
-        ](id, address, address, share, 0);
-
+        const depositRes = await yieldBox.depositAsset(
+          id,
+          address,
+          address,
+          share,
+          0
+        );
         await depositRes.wait();
 
         const collateralRes = await mixologist.addCollateral(
@@ -81,7 +85,7 @@ export const borrowHooks = () => {
       const value = amount * 10000000000;
 
       const assetId = await mixologist.assetId();
-      const share = await beachbar.toShare(assetId, value, false);
+      const share = await yieldBox.toShare(assetId, value, false);
 
       try {
         const borrowRes = await mixologist.borrow(address, share);
@@ -89,9 +93,13 @@ export const borrowHooks = () => {
 
         setStatus(STATUS.WITHDRAWING);
 
-        const withdrawalRes = await beachbar[
-          "withdraw(uint256,address,address,uint256,uint256,bool)"
-        ](assetId, address, address, share, 0, false);
+        const withdrawalRes = await yieldBox.withdraw(
+          assetId,
+          address,
+          address,
+          share,
+          0
+        );
 
         await withdrawalRes.wait();
       } catch (error) {
@@ -102,13 +110,10 @@ export const borrowHooks = () => {
 
     const approveTokensAndSetBarApproval = async () => {
       await (
-        await weth["approve(address,uint256)"](
-          beachbar.address,
-          ethers.constants.MaxUint256
-        )
+        await weth.approve(beachbar.address, ethers.constants.MaxUint256)
       ).wait();
 
-      await (await beachbar.setApprovalForAll(mixologist.address, true)).wait();
+      await (await yieldBox.setApprovalForAll(mixologist.address, true)).wait();
     };
 
     const borrow = async ({ collateralAmount = 0, borrowAmount = 0 }) => {
