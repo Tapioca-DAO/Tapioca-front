@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import uuid from "uuid";
 import { useTranslation } from "react-i18next";
-import { ComboList, AssetsOptionsProps } from "@/pages/Furucombo";
+import { ComboList, AssetsOptionsProps } from "@/pages/Flashloans";
 import FurucomboTokenImage from "./FurucomboTokenImage";
 import SelectDropdown from "@/components/SelectDropdown";
 

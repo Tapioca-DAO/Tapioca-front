@@ -82,11 +82,14 @@ const NewCubeModal = ({ closeModal, selectCube }: Props) => {
                 <div className="w-full md:w-[600px]">
                   {filteredCubes.map(({ title, defiName, options, colors }) => {
                     return (
-                      <div key={defiName} className="mb-6">
+                      <div key={`${defiName}`} className="mb-6">
                         <div>{title}</div>
                         <div className="md:flex md:flex-wrap">
                           {options.map(({ featureName, title }: any) => (
-                            <div className="md:basis-1/3 md:pr-4">
+                            <div
+                              className="md:basis-1/3 md:pr-4"
+                              key={`${defiName}-${featureName}`}
+                            >
                               <GradientButton
                                 id={featureName}
                                 onClick={() => {
