@@ -3,6 +3,7 @@ import parseBigBalance from "@/utils/parseBigBalance";
 import { NotificationContext } from "@/providers/NotificationContext";
 import { loadContract__TEST } from "tapioca-sdk";
 import { useContext, useEffect, useState } from "react";
+import {  useEthers } from "@usedapp/core";
 
 interface ErrorMessage {
   message: string;
@@ -10,10 +11,13 @@ interface ErrorMessage {
 
 export const loanHooks = () => {
   const { useNotification } = useContext(NotificationContext);
+  const { account, library } = useEthers();
+  const signer = library?.getSigner();
 
-  const winEthereum = (window as any).ethereum;
-  const provider = new ethers.providers.Web3Provider(winEthereum);
-  const signer = provider.getSigner();
+  if (!account || !signer) {
+    return;
+  }
+
   const { mixologist, yieldBox, beachbar, usdc, weth } =
     loadContract__TEST(signer);
 
@@ -129,7 +133,10 @@ export const loanHooks = () => {
     const checkIsApproved = async () => {
       setIsApproving(true);
       try {
-        const res = await yieldBox.isApprovedForAll(address, mixologist.address);
+        const res = await yieldBox.isApprovedForAll(
+          address,
+          mixologist.address
+        );
         setIsApproved(res);
       } catch (error) {
         const { message } = error as ErrorMessage;

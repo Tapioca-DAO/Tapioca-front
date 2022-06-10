@@ -3,6 +3,7 @@ import parseBigBalance from "@/utils/parseBigBalance";
 import { NotificationContext } from "@/providers/NotificationContext";
 import { loadContract__TEST } from "tapioca-sdk";
 import { useContext, useEffect, useState } from "react";
+import { useEthers } from "@usedapp/core";
 
 interface ErrorMessage {
   message: string;
@@ -17,10 +18,11 @@ const STATUS = {
 
 export const borrowHooks = () => {
   const { useNotification } = useContext(NotificationContext);
+  const { account: address, library } = useEthers();
 
-  const winEthereum = (window as any).ethereum;
+  const signer = library?.getSigner();
 
-  if (!winEthereum) {
+  if (!signer || !address) {
     return () => ({
       inProgress: false,
       assetBalance: "0",
@@ -30,12 +32,10 @@ export const borrowHooks = () => {
     });
   }
 
-  const provider = new ethers.providers.Web3Provider(winEthereum);
-  const signer = provider.getSigner();
-  const { mixologist, yieldBox, beachbar, weth, usdc } =
-    loadContract__TEST(signer);
+  const useContract = () => {
+    const { mixologist, yieldBox, beachbar, weth, usdc } =
+      loadContract__TEST(signer);
 
-  const useContract = (address: string) => {
     const [assetBalance, setAssetBalance] = useState("0");
     const [depositedCollateral, setDepositedCollateral] = useState("0");
     const [inProgress, setInProgress] = useState(false);

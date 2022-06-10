@@ -5,6 +5,7 @@ import BorrowCard from "@/components/borrow/BorrowCard";
 import { WalletContext } from "@/providers/WalletContext";
 import { useContext } from "react";
 import { getQuery } from "@/utils/getQuery";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const MAIN_QUERY = "main";
 const COLLATERAL_QUERY = "collateral";
@@ -33,15 +34,12 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   const isDisabled =
     disabled || metamaskNotAvailable || !isConnected || !wallet.address;
 
+  if (!wallet.address) return <LoadingSpinner />;
+
   return (
     <div className="md:flex md:gap-x-4 md:pt-10">
       <CardLeft />
-      <BorrowCard
-        main={main}
-        collateral={collateral}
-        isDisabled={isDisabled}
-        address={wallet.address || ""}
-      />
+      <BorrowCard main={main} collateral={collateral} isDisabled={isDisabled} />
       <CardRight />
     </div>
   );

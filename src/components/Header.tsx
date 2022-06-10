@@ -16,6 +16,8 @@ const Header = () => {
   const { address, balance } = wallet;
   const { pathname } = useLocation();
 
+  const parsedBalance = balance ? parseFloat(balance).toFixed(3) : "0";
+
   const titleHeader = useMemo(() => {
     switch (pathname) {
       case "/":
@@ -84,9 +86,7 @@ const Header = () => {
               options={[
                 {
                   id: "balance",
-                  children: `${parseFloat(balance).toFixed(3)} ${
-                    TOKENS_SYMBOLS.ETH
-                  }`,
+                  children: `${parsedBalance} ${TOKENS_SYMBOLS.ETH}`,
                 },
                 { id: "address", children: formatAddress(address) },
               ]}

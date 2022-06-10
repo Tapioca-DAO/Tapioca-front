@@ -1,22 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "@/pages/App";
-import { Web3ReactProvider } from "@web3-react/core";
-import Web3 from "web3";
+import { Config, DAppProvider, Rinkeby } from "@usedapp/core";
 
 import "@/styles/index.scss";
 import "@/styles/index.css";
 import "@/config/i18n";
 
-const getLibrary = (provider: any) => {
-  return new Web3(provider);
+const config: Config = {
+  readOnlyChainId: Rinkeby.chainId,
 };
 
 ReactDOM.render(
   <React.StrictMode>
-    <Web3ReactProvider getLibrary={getLibrary}>
+    <DAppProvider config={config}>
       <App />
-    </Web3ReactProvider>
+    </DAppProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
