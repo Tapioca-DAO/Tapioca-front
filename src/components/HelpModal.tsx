@@ -1,5 +1,4 @@
 import Close from "@/images/Close";
-import { t } from "i18next";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import { SourceProps } from "react-player/base";
@@ -47,7 +46,7 @@ const HelpModal = ({ video }: Props) => {
           onClick={() => setIsOpen(true)}
           className="flex items-center font-bebas-neue"
         >
-          {t("needHelp")}
+          Need Help?
         </button>
       </div>
 

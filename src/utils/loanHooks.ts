@@ -3,7 +3,7 @@ import parseBigBalance from "@/utils/parseBigBalance";
 import { NotificationContext } from "@/providers/NotificationContext";
 import { loadContract__TEST } from "tapioca-sdk";
 import { useContext, useEffect, useState } from "react";
-import {  useEthers } from "@usedapp/core";
+import { useEthers } from "@usedapp/core";
 
 interface ErrorMessage {
   message: string;
@@ -15,7 +15,35 @@ export const loanHooks = () => {
   const signer = library?.getSigner();
 
   if (!account || !signer) {
-    return;
+    return {
+      useWethContract: () => ({
+        balance: "",
+        updateBalance: () => {},
+        isMinting: false,
+        isLoading: false,
+        mint: () => {},
+        approve: () => {},
+        isApproved: false,
+        isAproving: false,
+      }),
+      useUsdcContract: () => ({
+        balance: "",
+        isMinting: false,
+        isLoading: false,
+        mint: () => {},
+        approve: () => {},
+        isApproved: false,
+        isAproving: false,
+      }),
+      useBeachbarContract: () => ({
+        assetBalance: "",
+        deposit: () => {},
+      }),
+      useMixologistContract: () => ({
+        depositedCollateral: "",
+        lendAsset: () => {},
+      }),
+    };
   }
 
   const { mixologist, yieldBox, beachbar, usdc, weth } =
