@@ -1,7 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import App from "@/pages/App";
 import { Config, DAppProvider, Rinkeby } from "@usedapp/core";
+
+import { createRoot } from 'react-dom/client';
 
 import "@/styles/index.scss";
 import "@/styles/index.css";
@@ -11,11 +12,13 @@ const config: Config = {
   readOnlyChainId: Rinkeby.chainId,
 };
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+root.render(
   <React.StrictMode>
     <DAppProvider config={config}>
       <App />
     </DAppProvider>
   </React.StrictMode>,
-  document.getElementById("root")
 );
