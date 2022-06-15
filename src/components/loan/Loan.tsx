@@ -2,53 +2,47 @@ import LoanCard from "@/components/LoanCard";
 import { loanHooks } from "@/utils/loanHooks";
 
 interface Props {
-  address: string;
   main: string;
   collateral: string;
 }
 
-const Loan = ({ address, main, collateral }: Props) => {
-  const {
-    useWethContract,
-    useUsdcContract,
-    useBeachbarContract,
-    useMixologistContract,
-  } = loanHooks();
+const Loan = ({ main, collateral }: Props) => {
+  const useContract = loanHooks();
 
   const {
-    balance: wethBalance,
-    isMinting: isMintingWeth,
-    isLoading: isLoadingWeth,
-    isApproved: isWethApproved,
-    isAproving: isWethApproving,
-    mint: mintWETH,
-    approve: approveWeth,
-  } = useWethContract(address);
-
-  const {
-    balance: usdcBalance,
-    isMinting: isMintingUsdc,
-    isLoading: isLoadingUsdc,
-    isApproved: isUsdcApproved,
-    isAproving: isUsdcApproving,
-    mint: mintUSDC,
-    approve: approveUsdc,
-  } = useUsdcContract(address);
-
-  const { assetBalance, deposit } = useBeachbarContract(address);
-  const { depositedCollateral, lendAsset } = useMixologistContract(address);
+    wethBalance,
+    wethDeposited,
+    isLoadingWeth,
+    isMintingWeth,
+    isWethApproved,
+    isWethApproving,
+    mintWETH,
+    approveWeth,
+    usdcBalance,
+    depositedCollateral,
+    isMintingUsdc,
+    isLoadingUsdc,
+    isUsdcApproved,
+    isUsdcApproving,
+    mintUSDC,
+    approveUsdc,
+    depositAsset,
+    lendAsset,
+  } = useContract();
 
   return (
     <div className="md:m-8 my-4 mx-3 flex flex-col md:flex-row justify-center">
       <LoanCard
         selectedAsset={main}
-        deposited={assetBalance}
-        onDeposit={deposit}
+        deposited={wethDeposited}
+        onDeposit={depositAsset}
         onApprove={approveWeth}
         assetBalance={wethBalance}
         isApproved={isWethApproved}
         isApproving={isWethApproving}
-        isDepositDisabled={!isUsdcApproved || !isWethApproved}
+        isDepositDisabled={isLoadingWeth || !isUsdcApproved || !isWethApproved}
+        mint={mintWETH}
+        isMinting={isMintingWeth}
       ></LoanCard>
 
       <LoanCard
@@ -60,7 +54,9 @@ const Loan = ({ address, main, collateral }: Props) => {
         assetBalance={usdcBalance}
         isApproved={isUsdcApproved}
         isApproving={isUsdcApproving}
-        isDepositDisabled={!isUsdcApproved || !isWethApproved}
+        isDepositDisabled={isLoadingUsdc || !isUsdcApproved || !isWethApproved}
+        mint={mintUSDC}
+        isMinting={isMintingUsdc}
       ></LoanCard>
     </div>
   );

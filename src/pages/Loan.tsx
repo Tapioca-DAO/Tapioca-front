@@ -32,7 +32,7 @@ const LoadLoan = () => {
     return <div className="text-center mt-10">Connect your wallet</div>;
   }
 
-  return <Loan address={wallet.address} main={main} collateral={collateral} />;
+  return <Loan main={main} collateral={collateral} />;
 };
 
 export default LoadLoan;

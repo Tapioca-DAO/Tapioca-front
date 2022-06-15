@@ -11,87 +11,150 @@ interface ErrorMessage {
 
 export const loanHooks = () => {
   const { useNotification } = useContext(NotificationContext);
-  const { account, library } = useEthers();
+  const { account: address, library } = useEthers();
   const signer = library?.getSigner();
 
-  if (!account || !signer) {
-    return {
-      useWethContract: () => ({
-        balance: "",
-        updateBalance: () => {},
-        isMinting: false,
-        isLoading: false,
-        mint: () => {},
-        approve: () => {},
-        isApproved: false,
-        isAproving: false,
-      }),
-      useUsdcContract: () => ({
-        balance: "",
-        isMinting: false,
-        isLoading: false,
-        mint: () => {},
-        approve: () => {},
-        isApproved: false,
-        isAproving: false,
-      }),
-      useBeachbarContract: () => ({
-        assetBalance: "",
-        deposit: () => {},
-      }),
-      useMixologistContract: () => ({
-        depositedCollateral: "",
-        lendAsset: () => {},
-      }),
-    };
+  if (!address || !signer) {
+    return () => ({
+      wethBalance: "",
+      wethDeposited: "",
+      isLoadingWeth: false,
+      isMintingWeth: false,
+      isWethApproved: false,
+      isWethApproving: false,
+      mintWETH: () => {},
+      approveWeth: () => {},
+      usdcBalance: "",
+      depositedCollateral: "",
+      isMintingUsdc: false,
+      isLoadingUsdc: false,
+      isUsdcApproved: false,
+      isUsdcApproving: false,
+      mintUSDC: () => {},
+      approveUsdc: () => {},
+      depositAsset: () => {},
+      lendAsset: () => {},
+    });
   }
 
   const { mixologist, yieldBox, beachbar, usdc, weth } =
     loadContract__TEST(signer);
 
-  const useWethContract = (address: string) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [isAproving, setIsApproving] = useState(false);
-    const [isMinting, setIsMiting] = useState(false);
-    const [isApproved, setIsApproved] = useState(false);
-    const [balance, setBalance] = useState("0");
+  const useContract = () => {
+    const [asset, setAsset] = useState({
+      asset: "WETH",
+      balance: "0",
+      depositedBalance: "0",
+      isLoading: true,
+      isApproved: false,
+      isApproving: false,
+      isMinting: false,
+    });
 
-    const updateBalance = async () => {
-      setIsLoading(true);
+    const [collateral, setCollateral] = useState({
+      asset: "USDC",
+      balance: "0",
+      depositedBalance: "0",
+      isLoading: true,
+      isApproved: false,
+      isApproving: false,
+      isMinting: false,
+    });
+
+    const updateAssetBalance = async () => {
+      setAsset({ ...asset, isLoading: true });
+
+      const assetId = await mixologist.assetId();
       const balance = await weth.balanceOf(address);
-      setBalance(parseBigBalance(balance));
-      setIsLoading(false);
+      const depositedBalance = await yieldBox.balanceOf(address, assetId);
+
+      setAsset({
+        ...asset,
+        balance: parseBigBalance(balance),
+        depositedBalance: parseBigBalance(depositedBalance),
+        isLoading: false,
+      });
     };
 
-    const mint = async ({ amount = 1 }) => {
-      setIsMiting(true);
+    const updateCollateralBalance = async () => {
+      setCollateral({ ...collateral, isLoading: true });
+      const balance = await usdc.balanceOf(address);
+      const depositedBalance = await mixologist.balanceOf(address);
+
+      setCollateral({
+        ...collateral,
+        balance: parseBigBalance(balance),
+        depositedBalance: parseBigBalance(depositedBalance),
+        isLoading: false,
+      });
+    };
+
+    const mintWETH = async () => {
+      setAsset({ ...asset, isMinting: true });
       try {
-        const mintValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
+        const mintValue = ethers.BigNumber.from((1e18).toString()).mul(1);
         const mint = await weth.freeMint(mintValue);
+
         await mint.wait();
-        updateBalance();
+        updateAssetBalance();
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (message) useNotification(message);
+      }
+      setAsset({ ...asset, isMinting: false });
+    };
+
+    const mintUSDC = async () => {
+      setCollateral({ ...collateral, isMinting: true });
+      try {
+        const mintValue = ethers.BigNumber.from((1e18).toString()).mul(1);
+        const mint = await usdc.freeMint(mintValue);
+        await mint.wait();
+        updateCollateralBalance();
       } catch (error) {
         const { message } = error as ErrorMessage;
         if (message) useNotification(message);
       }
 
-      setIsMiting(false);
+      setCollateral({ ...collateral, isMinting: false });
     };
 
-    const checkIsApproved = async () => {
-      setIsApproving(true);
+    const checkAsset = async () => {
       try {
         const res = await weth.allowance(address, beachbar.address);
-        setIsApproved(ethers.BigNumber.from(res ?? 0).gt(0));
+        setAsset({
+          ...asset,
+          isApproved: ethers.BigNumber.from(res ?? 0).gt(0),
+        });
       } catch (error) {
         const { message } = error as ErrorMessage;
         if (error) useNotification(message);
       }
-      setIsApproving(false);
+
+      updateAssetBalance();
     };
 
-    const approve = async () => {
-      setIsApproving(true);
+    const checkCollateral = async () => {
+      try {
+        const res = await yieldBox.isApprovedForAll(
+          address,
+          mixologist.address
+        );
+        setAsset({
+          ...asset,
+          isApproved: res,
+        });
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
+      }
+
+      updateCollateralBalance();
+    };
+
+    const approveWeth = async () => {
+      setAsset({ ...asset, isApproving: false });
+      let isApproved = false;
       try {
         const res = await weth["approve(address,uint256)"](
           beachbar.address,
@@ -99,123 +162,32 @@ export const loanHooks = () => {
         );
 
         res.wait();
-        setIsApproved(true);
+        isApproved = true;
       } catch (error) {
         const { message } = error as ErrorMessage;
         if (message) useNotification(message);
       }
+
+      setAsset({ ...asset, isApproving: false, isApproved });
     };
 
-    useEffect(() => {
-      updateBalance();
-      checkIsApproved();
-    }, []);
-
-    return {
-      balance,
-      updateBalance,
-      isLoading,
-      isMinting,
-      mint,
-      approve,
-      isApproved,
-      isAproving,
-    };
-  };
-
-  const useUsdcContract = (address: string) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [isMinting, setIsMiting] = useState(false);
-    const [isAproving, setIsApproving] = useState(false);
-    const [isApproved, setIsApproved] = useState(false);
-    const [balance, setBalance] = useState("0");
-
-    const updateBalance = async () => {
-      setIsLoading(true);
-      try {
-        const balance = await usdc.balanceOf(address);
-        setBalance(parseBigBalance(balance));
-      } catch (error) {
-        const { message } = error as ErrorMessage;
-        if (error) useNotification(message);
-      }
-      setIsLoading(false);
-    };
-
-    const mint = async ({ amount = 1 }) => {
-      setIsMiting(true);
-
-      try {
-        const mintValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
-        const mint = await usdc.freeMint(mintValue);
-        await mint.wait();
-        updateBalance();
-      } catch (error) {
-        const { message } = error as ErrorMessage;
-        if (error) useNotification(message);
-      }
-
-      setIsMiting(false);
-    };
-
-    const checkIsApproved = async () => {
-      setIsApproving(true);
-      try {
-        const res = await yieldBox.isApprovedForAll(
-          address,
-          mixologist.address
-        );
-        setIsApproved(res);
-      } catch (error) {
-        const { message } = error as ErrorMessage;
-        if (error) useNotification(message);
-      }
-      setIsApproving(false);
-    };
-
-    const approve = async () => {
-      setIsApproving(true);
+    const approveUsdc = async () => {
+      setCollateral({ ...collateral, isApproving: true });
+      let isApproved = false;
       try {
         const res = await yieldBox.setApprovalForAll(mixologist.address, true);
 
         await res.wait();
-
-        checkIsApproved();
+        isApproved = true;
       } catch (error) {
         const { message } = error as ErrorMessage;
         if (error) useNotification(message);
       }
 
-      setIsApproving(false);
+      setCollateral({ ...collateral, isApproving: false, isApproved });
     };
 
-    useEffect(() => {
-      updateBalance();
-      checkIsApproved();
-    }, []);
-
-    return {
-      balance,
-      updateBalance,
-      isMinting,
-      isLoading,
-      mint,
-      approve,
-      isAproving,
-      isApproved,
-    };
-  };
-
-  const useBeachbarContract = (address: string) => {
-    const [assetBalance, setAssetBalance] = useState("");
-
-    const getAssetInBeachbar = async () => {
-      const assetId = await mixologist.assetId();
-      const balance = await yieldBox.balanceOf(address, assetId);
-      setAssetBalance(parseBigBalance(balance));
-    };
-
-    const deposit = async ({ amount = 0 }) => {
+    const depositAsset = async ({ amount = 0 }) => {
       const lendValue = amount * 10000000000;
 
       const assetId = await mixologist.assetId();
@@ -231,26 +203,11 @@ export const loanHooks = () => {
         );
 
         await res.wait();
-        getAssetInBeachbar();
+        updateAssetBalance();
       } catch (error) {
         const { message } = error as ErrorMessage;
         if (error) useNotification(message);
       }
-    };
-
-    useEffect(() => {
-      getAssetInBeachbar();
-    }, []);
-
-    return { assetBalance, deposit };
-  };
-
-  const useMixologistContract = (address: string) => {
-    const [depositedCollateral, setDepositedCollateral] = useState("0");
-
-    const getDepositedCollateral = async () => {
-      const balance = await mixologist.balanceOf(address);
-      setDepositedCollateral(parseBigBalance(balance));
     };
 
     const lendAsset = async ({ amount = 0 }) => {
@@ -262,8 +219,7 @@ export const loanHooks = () => {
       try {
         const res = await mixologist.addAsset(address, false, share);
         await res.wait();
-        getDepositedCollateral();
-        // TODO: update asset
+        updateCollateralBalance();
       } catch (error) {
         const { message } = error as ErrorMessage;
         if (error) useNotification(message);
@@ -271,19 +227,31 @@ export const loanHooks = () => {
     };
 
     useEffect(() => {
-      getDepositedCollateral();
+      checkAsset();
+      checkCollateral();
     }, []);
 
     return {
+      wethBalance: asset.balance,
+      wethDeposited: asset.depositedBalance,
+      isLoadingWeth: asset.isLoading,
+      isMintingWeth: asset.isMinting,
+      isWethApproved: asset.isApproved,
+      isWethApproving: asset.isApproving,
+      mintWETH,
+      approveWeth,
+      usdcBalance: collateral.balance,
+      depositedCollateral: collateral.depositedBalance,
+      isMintingUsdc: collateral.isMinting,
+      isLoadingUsdc: collateral.isLoading,
+      isUsdcApproved: collateral.isApproved,
+      isUsdcApproving: collateral.isApproving,
+      mintUSDC,
+      approveUsdc,
+      depositAsset,
       lendAsset,
-      depositedCollateral,
     };
   };
 
-  return {
-    useWethContract,
-    useUsdcContract,
-    useBeachbarContract,
-    useMixologistContract,
-  };
+  return useContract;
 };

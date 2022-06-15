@@ -12,6 +12,8 @@ interface Props {
   isApproved?: boolean;
   isApproving?: boolean;
   isDepositDisabled?: boolean;
+  mint: () => void;
+  isMinting: boolean;
 }
 
 const LoanCard = ({
@@ -25,16 +27,22 @@ const LoanCard = ({
   isApproved = false,
   isApproving,
   isDepositDisabled = true,
+  mint,
+  isMinting,
 }: Props) => {
   const [amount, setAmount] = useState("");
 
   return (
     <div className="flex flex-col md:basis-1/2 mx-4">
-      <div className="flex justify-between items-center w-full">
+      <div className="flex justify-between items-center w-full mb-2">
         <div className="font-bebas-neue text-2xl">
           {isCollateral ? "Collateral" : "Asset"}:{" "}
           <span className="text-custom-pink-1">{selectedAsset}</span>
         </div>
+
+        <Button onClick={mint} isLoading={isMinting} disabled={isMinting}>
+          Mint {selectedAsset}
+        </Button>
       </div>
       <div className="rounded-lg border-2 border-custom-blue bg-custom-grey-4 p-4">
         <div className="flex items-center justify-between mb-8">
