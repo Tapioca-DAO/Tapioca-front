@@ -1,12 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import BorrowSelectTokenCard from "@/components/BorrowSelectTokenCard";
 import BorrowTitle from "@/components/BorrowTitle";
 import { TOKENS_SYMBOLS, BORROW_TOKEN_LIST } from "@/utils/tokens";
 import BorrowFooter from "@/components/BorrowFooter";
 
 const Borrow = () => {
-  const { t } = useTranslation();
 
   const [mainToken, setMainToken] = useState(TOKENS_SYMBOLS.ETH);
   const [collateral, setCollateral] = useState("");
