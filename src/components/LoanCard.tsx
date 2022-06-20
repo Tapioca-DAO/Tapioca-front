@@ -32,7 +32,7 @@ const LoanCard = ({
   const [amount, setAmount] = useState("");
 
   return (
-    <div className="flex flex-col md:basis-1/2 mx-4">
+    <div className="flex flex-col md:basis-2/5 mx-4">
       <div className="flex justify-between items-center w-full mb-2">
         <div className="font-bebas-neue text-2xl">
           {isCollateral ? "Collateral" : "Asset"}:{" "}

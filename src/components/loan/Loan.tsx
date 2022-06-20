@@ -1,5 +1,7 @@
 import LoanCard from "@/components/LoanCard";
 import { loanHooks } from "@/utils/loanHooks";
+import { PAIR_LIST } from "@/utils/constants";
+import formatter from "@/utils/dolarFormater";
 
 interface Props {
   main: string;
@@ -30,6 +32,10 @@ const Loan = ({ main, collateral }: Props) => {
     lendAsset,
   } = useContract();
 
+  const pair = PAIR_LIST.find(
+    (item) => item.token === main && item.collateral === collateral
+  );
+
   return (
     <div className="md:m-8 my-4 mx-3 flex flex-col md:flex-row justify-center">
       <LoanCard
@@ -58,6 +64,37 @@ const Loan = ({ main, collateral }: Props) => {
         mint={mintUSDC}
         isMinting={isMintingUsdc}
       ></LoanCard>
+
+      <div className="rounded-lg border-2 border-custom-blue bg-custom-grey-4 p-4 basis-1/5">
+        <div className="font-bebas-neue text-2xl text-center pb-2">Market</div>
+
+        <div className="flex justify-between pt-2 text-sm">
+          <div>Price</div>
+          <div className="text-zinc-400">
+            {formatter.format(pair?.tokenPrice || 0)}
+          </div>
+        </div>
+
+        <div className="flex justify-between pt-2 text-sm">
+          <div>APR</div>
+          <div className="text-zinc-400">{pair?.apy}%</div>
+        </div>
+
+        <div className="flex justify-between pt-2 text-sm">
+          <div>LTV</div>
+          <div className="text-zinc-400">{pair?.ltv}%</div>
+        </div>
+
+        <div className="flex justify-between pt-2 text-sm">
+          <div>Strategy</div>
+          <div className="text-zinc-400">{pair?.strategy}</div>
+        </div>
+
+        <div className="flex justify-between pt-2 text-sm">
+          <div>Oracle</div>
+          <div className="text-zinc-400">{pair?.oracle}</div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { LOAN_LIST } from "@/utils/constants";
+import { PAIR_LIST } from "@/utils/constants";
+import formatter from "@/utils/dolarFormater";
 import GetToken from "@/images/GetToken";
 import BubbleGreen from "@/images/BubbleGreen";
 import Button from "@/components/Button";
@@ -18,12 +19,12 @@ const ListOfPairs = () => {
   const navigate = useNavigate();
 
   const filteredList = useMemo(() => {
-    return LOAN_LIST.filter(
+    return PAIR_LIST.filter(
       ({ token, collateral }) =>
         token.toLowerCase().includes(search.toLowerCase()) ||
         collateral.toLowerCase().includes(search.toLowerCase())
     );
-  }, [search, LOAN_LIST]);
+  }, [search, PAIR_LIST]);
 
   return (
     <div>
@@ -51,89 +52,98 @@ const ListOfPairs = () => {
           <div className={HEADER_BASE_STYLES}>Available</div>
           <div className={HEADER_BASE_STYLES}>APR</div>
         </div>
-        {filteredList.map(({ token, collateral, apy }, index) => (
-          <div
-            key={`${token}-${collateral}-${index}`}
-            className={[
-              "bg-custom-grey-4/50 mx-3 mb-3 border-4 border-custom-pink-1 rounded-lg cursor-pointer",
-              "md:pointer-events-auto md:flex md:hover:bg-custom-grey-4/80 md:p-2",
-            ].join(" ")}
-            onClick={() =>
-              navigate(`/loan?main=${token}&collateral=${collateral}`)
-            }
-          >
-            <div className={MARKET_STYLES}>
-              <div className="flex items-center">
-                <GetToken
-                  token={token}
-                  isSelected
-                  className="w-10 h-10 z-0 -mr-3"
-                />
-                <GetToken
-                  token={collateral}
-                  isSelected
-                  className="w-10 h-10 z-100"
-                />
-              </div>
-
-              <div className="flex md:hidden items-center gap-1 text-xl">
-                <div>{token}</div>
-                <BubbleGreen />
-                <div>{collateral}</div>
-              </div>
-            </div>
-
-            <div className={HEADER_BASE_STYLES}>
-              <div className="text-xl">{token}</div>
-            </div>
-
-            <div className={HEADER_BASE_STYLES}>
-              <div className="text-xl">{collateral}</div>
-            </div>
-
-            <div className={HEADER_BASE_STYLES}>Witnet</div>
-
-            <div className={HEADER_BASE_STYLES}>
-              <div className="text-lg">165,049 {token}</div>
-              <div className="text-xs text-zinc-400">$165,281</div>
-            </div>
-
-            <div className={HEADER_BASE_STYLES}>
-              <div className="text-lg">1,165,049 {token}</div>
-              <div className="text-xs text-zinc-400">$1,165,281</div>
-            </div>
-            <div className={HEADER_BASE_STYLES}>
-              <div className="text-lg">{apy}%</div>
-            </div>
-
-            <div className="md:hidden">
-              <div className="flex p-4 justify-between">
-                <div>
-                  <div className="text-zinc-400">APR</div>
-                  <div className="text-lg">{apy}%</div>
-                  <div className="text-zinc-400">Chainlink</div>
+        {filteredList.map(
+          (
+            { token, collateral, apy, oracle, borrowed, available, tokenPrice },
+            index
+          ) => (
+            <div
+              key={`${token}-${collateral}-${index}`}
+              className={[
+                "bg-custom-grey-4/50 mx-3 mb-3 border-4 border-custom-pink-1 rounded-lg cursor-pointer",
+                "md:pointer-events-auto md:flex md:hover:bg-custom-grey-4/80 md:p-2",
+              ].join(" ")}
+              onClick={() =>
+                navigate(`/loan?main=${token}&collateral=${collateral}`)
+              }
+            >
+              <div className={MARKET_STYLES}>
+                <div className="flex items-center">
+                  <GetToken
+                    token={token}
+                    isSelected
+                    className="w-10 h-10 z-0 -mr-3"
+                  />
+                  <GetToken
+                    token={collateral}
+                    isSelected
+                    className="w-10 h-10 z-100"
+                  />
                 </div>
-                <div>
-                  <div className="text-zinc-400">Liquidity</div>
-                  <div className="text-lg">1,165,049 {token}</div>
-                  <div className="text-sm text-zinc-400">$1,165,281</div>
+
+                <div className="flex md:hidden items-center gap-1 text-xl">
+                  <div>{token}</div>
+                  <BubbleGreen />
+                  <div>{collateral}</div>
                 </div>
               </div>
 
-              <div className="py-3 px-4">
-                <Button
-                  buttonColor="pink"
-                  customClasses="w-full"
-                  onClick={() =>
-                    navigate(`/loan?main=${token}&collateral=${collateral}`)
-                  }
-                >
-                  Loan
-                </Button>
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-xl">{token}</div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-xl">{collateral}</div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>{oracle}</div>
+
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-lg">{formatter.format(borrowed)}</div>
+                <div className="text-xs text-zinc-400">
+                  {parseFloat((borrowed / tokenPrice).toFixed(3))} {token}
+                </div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>
+                {formatter.format(available)}
+                <div className="text-xs text-zinc-400">
+                  {parseFloat((available / tokenPrice).toFixed(3))} {token}
+                </div>
+              </div>
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-lg">{apy}%</div>
+              </div>
+
+              <div className="md:hidden">
+                <div className="flex p-4 justify-between">
+                  <div>
+                    <div className="text-zinc-400">APR</div>
+                    <div className="text-lg">{apy}%</div>
+                    <div className="text-zinc-400">Chainlink</div>
+                  </div>
+                  <div>
+                    <div className="text-zinc-400">Liquidity</div>
+                    <div className="text-lg">1,165,049 {token}</div>
+                    <div className="text-sm text-zinc-400">$1,165,281</div>
+                  </div>
+                </div>
+
+                <div className="py-3 px-4">
+                  <Button
+                    buttonColor="pink"
+                    customClasses="w-full"
+                    onClick={() =>
+                      navigate(`/loan?main=${token}&collateral=${collateral}`)
+                    }
+                  >
+                    Loan
+                  </Button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          )
+        )}
       </div>
     </div>
   );

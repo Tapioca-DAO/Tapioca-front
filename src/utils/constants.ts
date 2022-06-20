@@ -18,38 +18,39 @@ import {
 
 const TOKENS = TOKENS_SYMBOLS;
 
-export const LOAN_LIST = [
+export const PAIR_LIST = [
   {
     token: TOKENS.WETH,
     collateral: TOKENS.USDC,
+    tokenPrice: 1098.61,
     apy: 0.25,
-    prices: {
-      [TOKENS.USDC]: 1.12,
-    },
+    oracle: "Chainlink",
+    strategy: "Active",
+    ltv: 75,
+    borrowed: 5882,
+    available: 7855,
   },
   {
     token: TOKENS.DAI,
-    collateral: TOKENS.USDT,
+    collateral: TOKENS.WETH,
+    tokenPrice: 1,
     apy: 0.25,
-    prices: {
-      [TOKENS.USDC]: 1.12,
-    },
+    oracle: "Chainlink",
+    strategy: "Active",
+    ltv: 75,
+    borrowed: 2437,
+    available: 292450,
   },
   {
     token: TOKENS.DAI,
-    collateral: TOKENS.ETH,
-    apy: 0.25,
-    prices: {
-      [TOKENS.USDC]: 1.12,
-    },
-  },
-  {
-    token: TOKENS.DAI,
-    collateral: TOKENS.BOBA,
-    apy: 0.25,
-    prices: {
-      [TOKENS.USDC]: 1.12,
-    },
+    collateral: TOKENS.USDC,
+    tokenPrice: 1,
+    apy: 1,
+    oracle: "Chainlink",
+    strategy: "Active",
+    ltv: 75,
+    borrowed: 0,
+    available: 0.001008,
   },
 ];
 
