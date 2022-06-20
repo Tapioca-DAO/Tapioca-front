@@ -23,7 +23,6 @@ const LoanCard = ({
   onDeposit,
   onApprove,
   assetBalance,
-  children,
   isApproved = false,
   isApproving,
   isDepositDisabled = true,

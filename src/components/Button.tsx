@@ -38,7 +38,7 @@ const Button = ({
     <button className={buttonClassName} {...htmlAttributes}>
       {isLoading ? (
         <div className="flex items-center justify-center">
-          <LoadingSpinner />
+          <LoadingSpinner xsmall />
           {screenReaderText || "Loading"}
         </div>
       ) : (

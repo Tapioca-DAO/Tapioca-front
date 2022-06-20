@@ -1,7 +1,36 @@
 import React from "react";
 
-const LoadingSpinner = () => {
-  const finalClassName = ["mr-2", "animate-spin", "w-4 md:w-8", "h-4 md:h-8"];
+const LoadingSpinner = ({
+  large = false,
+  small = false,
+  xsmall = false,
+  xxsmall = false,
+}) => {
+  const finalClassName = ["mr-2", "animate-spin"];
+
+  if ((small && large) || (small && xsmall) || (xsmall && large)) {
+    console.error(
+      "Spinner can only have one of the following attributes: small, xsmall, or large"
+    );
+    return null;
+  }
+
+  if (!small && !large && !xsmall && !xxsmall) {
+    finalClassName.push("w-8 h-8");
+  }
+
+  if (small) {
+    finalClassName.push("w-10 h-10");
+  }
+  if (large) {
+    finalClassName.push("w-52 h-52");
+  }
+  if (xsmall) {
+    finalClassName.push("w-5 h-5");
+  }
+  if (xxsmall) {
+    finalClassName.push("w-3 h-3");
+  }
 
   return (
     <span className={finalClassName.filter(Boolean).join(" ")}>
