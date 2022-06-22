@@ -1,9 +1,29 @@
 import Button from "@/components/Button";
 import Bubbles from "@/images/Bubbles";
+import formatter from "@/utils/dolarFormater";
 
-const CardRight = () => {
+interface Props {
+  pair?: {
+    token: string;
+    collateral: string;
+    tokenPrice: number;
+    apr: number;
+    oracle: string;
+    strategy: string;
+    ltv: number;
+    borrowed: number;
+    available: number;
+  };
+  main?: string | null;
+}
+
+const CardRight = ({ pair, main }: Props) => {
+  const tokenPrice = pair?.tokenPrice || 1;
+  const available = pair?.available || 0;
+  const borrowed = pair?.borrowed || 0;
+
   return (
-    <div className="basis-1/4 md:bg-custom-grey-4/50 md:rounded-[30px] py-10 md:py-2 md:px-8">
+    <div className="basis-1/4 md:bg-custom-grey-4/50 md:rounded-[30px] py-10 md:p-4 md:px-8">
       <div>
         <Bubbles className="px-8" />
       </div>
@@ -11,28 +31,27 @@ const CardRight = () => {
       <div className="hidden md:flex flex-col mt-4 w-full">
         <div>Market</div>
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>APR 0,25%</div>
-          <div>0,25%</div>
+          <div>APR</div>
+          <div>{pair?.apr || 0}%</div>
         </div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
           <div>LTV</div>
-          <div>75%</div>
-        </div>
-
-        <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Total</div>
-          <div>711,961 DAI</div>
+          <div>{pair?.ltv || 0}%</div>
         </div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
           <div>Availalble</div>
-          <div>572,688 DAI</div>
+          <div>
+            {parseFloat((available / tokenPrice).toFixed(3))} {main}
+          </div>
         </div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
           <div>Borrowed</div>
-          <div>19.56%</div>
+          <div>
+            {parseFloat((borrowed / tokenPrice).toFixed(3))} {main}
+          </div>
         </div>
 
         <div className="flex justify-between mt-3 gap-3">
@@ -53,29 +72,24 @@ const CardRight = () => {
         <div className="mt-6">Oracle - Witnet</div>
         <div className="flex justify-between mt-3 text-zinc-300">
           <div>Name</div>
-          <div>Chainlink</div>
+          <div className="text-zinc-400">{pair?.oracle}</div>
         </div>
 
         <div className="mt-6">Tapioca</div>
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>WETH Stratagy</div>
-          <div>Active</div>
+          <div>Stratagy</div>
+          <div className="text-zinc-400">{pair?.strategy}</div>
         </div>
 
-        <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Avg. APY</div>
-          <div>0%</div>
-        </div>
-
-        <div className="flex justify-between mt-3 text-zinc-300">
+        {/* <div className="flex justify-between mt-3 text-zinc-300">
           <div>Target Percentage</div>
           <div>75.00%</div>
-        </div>
+        </div> */}
 
-        <div className="flex justify-between mt-3 text-zinc-300">
+        {/* <div className="flex justify-between mt-3 text-zinc-300">
           <div>Current Percentage</div>
           <div>68.27%</div>
-        </div>
+        </div> */}
 
         <Button
           buttonColor="pink"

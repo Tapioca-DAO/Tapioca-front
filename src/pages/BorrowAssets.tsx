@@ -5,6 +5,7 @@ import BorrowCard from "@/components/borrow/BorrowCard";
 import { WalletContext } from "@/providers/WalletContext";
 import { useContext } from "react";
 import { getQuery } from "@/utils/getQuery";
+import { PAIR_LIST } from "@/utils/constants";
 
 const MAIN_QUERY = "main";
 const COLLATERAL_QUERY = "collateral";
@@ -33,11 +34,15 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   const isDisabled =
     disabled || metamaskNotAvailable || !isConnected || !wallet.address;
 
+  const pair = PAIR_LIST.find(
+    (item) => item.token === main && item.collateral === collateral
+  );
+
   return (
     <div className="md:flex md:gap-x-4 md:pt-10">
       <CardLeft />
       <BorrowCard main={main} collateral={collateral} isDisabled={isDisabled} />
-      <CardRight />
+      <CardRight pair={pair} main={main}  />
     </div>
   );
 };

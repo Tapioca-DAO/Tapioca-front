@@ -77,7 +77,7 @@ const Loan = ({ main, collateral }: Props) => {
 
         <div className="flex justify-between pt-2 text-sm">
           <div>APR</div>
-          <div className="text-zinc-400">{pair?.apy}%</div>
+          <div className="text-zinc-400">{pair?.apr}%</div>
         </div>
 
         <div className="flex justify-between pt-2 text-sm">

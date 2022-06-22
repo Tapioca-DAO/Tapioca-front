@@ -54,7 +54,7 @@ const ListOfPairs = () => {
         </div>
         {filteredList.map(
           (
-            { token, collateral, apy, oracle, borrowed, available, tokenPrice },
+            { token, collateral, apr, oracle, borrowed, available, tokenPrice },
             index
           ) => (
             <div
@@ -112,14 +112,14 @@ const ListOfPairs = () => {
                 </div>
               </div>
               <div className={HEADER_BASE_STYLES}>
-                <div className="text-lg">{apy}%</div>
+                <div className="text-lg">{apr}%</div>
               </div>
 
               <div className="md:hidden">
                 <div className="flex p-4 justify-between">
                   <div>
                     <div className="text-zinc-400">APR</div>
-                    <div className="text-lg">{apy}%</div>
+                    <div className="text-lg">{apr}%</div>
                     <div className="text-zinc-400">Chainlink</div>
                   </div>
                   <div>
