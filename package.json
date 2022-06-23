@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npm run file",
+    "file": "cp -f _redirects dist/_redirects",
     "preview": "vite preview"
   },
   "engines": {
