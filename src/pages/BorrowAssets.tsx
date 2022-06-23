@@ -3,7 +3,7 @@ import CardLeft from "@/components/borrow/CardLeft";
 import CardRight from "@/components/borrow/CardRight";
 import BorrowCard from "@/components/borrow/BorrowCard";
 import { WalletContext } from "@/providers/WalletContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { getQuery } from "@/utils/getQuery";
 import { PAIR_LIST } from "@/utils/constants";
 
@@ -18,6 +18,7 @@ interface Props {
 
 const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   const location = useLocation();
+
   const { isConnected, wallet, metamaskNotAvailable } =
     useContext(WalletContext);
 
@@ -31,6 +32,9 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
 
   if (!main || !collateral) return <Navigate to="/" />;
 
+  const [collateralAmount, setCollateralAmount] = useState("");
+  const [mainAmount, setMainAmount] = useState("");
+
   const isDisabled =
     disabled || metamaskNotAvailable || !isConnected || !wallet.address;
 
@@ -41,8 +45,22 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   return (
     <div className="md:flex md:gap-x-4 md:pt-10">
       <CardLeft />
-      <BorrowCard main={main} collateral={collateral} isDisabled={isDisabled} />
-      <CardRight pair={pair} main={main}  />
+      <BorrowCard
+        main={main}
+        collateral={collateral}
+        isDisabled={isDisabled}
+        collateralAmount={collateralAmount}
+        mainAmount={mainAmount}
+        setCollateralAmount={setCollateralAmount}
+        setMainAmount={setMainAmount}
+      />
+      <CardRight
+        pair={pair}
+        main={main}
+        collateral={collateral}
+        collateralAmount={collateralAmount}
+        mainAmount={mainAmount}
+      />
     </div>
   );
 };

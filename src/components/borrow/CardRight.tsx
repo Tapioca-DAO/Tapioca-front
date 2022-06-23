@@ -13,14 +13,62 @@ interface Props {
     ltv: number;
     borrowed: number;
     available: number;
+    liquidation?: number;
+    health?: number;
   };
   main?: string | null;
+  collateral?: string | null;
+  collateralAmount: string;
+  mainAmount: string;
 }
 
-const CardRight = ({ pair, main }: Props) => {
+const SmallArrow = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+    aria-hidden="true"
+    width="14"
+    className="text-secondary"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+      clip-rule="evenodd"
+    ></path>
+  </svg>
+);
+
+const CardRight = ({
+  pair,
+  main,
+  collateral,
+  collateralAmount,
+  mainAmount,
+}: Props) => {
   const tokenPrice = pair?.tokenPrice || 1;
   const available = pair?.available || 0;
   const borrowed = pair?.borrowed || 0;
+  const liquidation = pair?.liquidation || 0;
+  const health = pair?.health || 0;
+
+  const positionHealth =
+    !collateralAmount || !mainAmount
+      ? 0
+      : (
+          (health * parseFloat(mainAmount)) /
+          parseFloat(collateralAmount)
+        ).toFixed(5);
+
+  console.log("main", mainAmount);
+
+  const liquidationPrice =
+    !collateralAmount || !mainAmount
+      ? "None"
+      : `1 ${collateral} = ${(
+          (liquidation * parseFloat(mainAmount)) /
+          parseFloat(collateralAmount)
+        ).toFixed(3)} ${main}`;
 
   return (
     <div className="basis-1/4 md:bg-custom-grey-4/50 md:rounded-[30px] py-10 md:p-4 md:px-8">
@@ -30,6 +78,7 @@ const CardRight = ({ pair, main }: Props) => {
 
       <div className="hidden md:flex flex-col mt-4 w-full">
         <div>Market</div>
+
         <div className="flex justify-between mt-3 text-zinc-300">
           <div>APR</div>
           <div>{pair?.apr || 0}%</div>
@@ -69,27 +118,25 @@ const CardRight = ({ pair, main }: Props) => {
           </Button>
         </div>
 
-        <div className="mt-6">Oracle - Witnet</div>
-        <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Name</div>
+        <div className="flex justify-between mt-6 text-zinc-300">
+          <div>Oracle</div>
           <div className="text-zinc-400">{pair?.oracle}</div>
         </div>
 
-        <div className="mt-6">Tapioca</div>
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Stratagy</div>
+          <div>Strategy</div>
           <div className="text-zinc-400">{pair?.strategy}</div>
         </div>
 
-        {/* <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Target Percentage</div>
-          <div>75.00%</div>
-        </div> */}
+        <div className="text-zinc-300 mt-6">Liquidation Price</div>
+        <div className="text-xs text-custom-blue">{liquidationPrice}</div>
 
-        {/* <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Current Percentage</div>
-          <div>68.27%</div>
-        </div> */}
+        <div className="text-zinc-300 mt-3">Position Health</div>
+        <div className="text-xs flex text-custom-blue">
+          0%
+          <SmallArrow />
+          {positionHealth}%
+        </div>
 
         <Button
           buttonColor="pink"

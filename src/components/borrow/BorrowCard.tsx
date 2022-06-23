@@ -17,14 +17,24 @@ interface Props {
   main: string;
   collateral: string;
   isDisabled: boolean;
+  collateralAmount: string;
+  mainAmount: string;
+  setCollateralAmount: (amount: string) => void;
+  setMainAmount: (amount: string) => void;
 }
 
-const BorrowCard = ({ main, collateral, isDisabled }: Props) => {
+const BorrowCard = ({
+  main,
+  collateral,
+  isDisabled,
+  collateralAmount,
+  mainAmount,
+  setCollateralAmount,
+  setMainAmount,
+}: Props) => {
   const useContract = borrowHooks();
 
   const [action, setAction] = useState(ACTIONS.BORROW);
-  const [collateralAmount, setCollateralAmount] = useState("");
-  const [mainAmount, setMainAmount] = useState("");
 
   const { inProgress, assetBalance, depositedCollateral, borrow, status } =
     useContract();

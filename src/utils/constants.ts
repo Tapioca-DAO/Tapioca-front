@@ -22,7 +22,9 @@ export const PAIR_LIST = [
   {
     token: TOKENS.WETH,
     collateral: TOKENS.USDC,
-    tokenPrice: 1098.61,
+    tokenPrice: 1121.08,
+    liquidation: 0.750756387059963,
+    health: 0.117984,
     apr: 0.25,
     oracle: "Chainlink",
     strategy: "Active",
