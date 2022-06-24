@@ -6,9 +6,10 @@ import formatter from "@/utils/dolarFormater";
 interface Props {
   main: string;
   collateral: string;
+  isDisabled: boolean;
 }
 
-const Loan = ({ main, collateral }: Props) => {
+const Loan = ({ main, collateral, isDisabled }: Props) => {
   const useContract = loanHooks();
 
   const {
@@ -49,6 +50,7 @@ const Loan = ({ main, collateral }: Props) => {
         isDepositDisabled={isLoadingWeth || !isUsdcApproved || !isWethApproved}
         mint={mintWETH}
         isMinting={isMintingWeth}
+        isDisabled={isDisabled}
       ></LoanCard>
 
       <LoanCard
@@ -63,6 +65,7 @@ const Loan = ({ main, collateral }: Props) => {
         isDepositDisabled={isLoadingUsdc || !isUsdcApproved || !isWethApproved}
         mint={mintUSDC}
         isMinting={isMintingUsdc}
+        isDisabled={isDisabled}
       ></LoanCard>
 
       <div className="rounded-lg border-2 border-custom-blue bg-custom-grey-4 p-4 basis-1/5">

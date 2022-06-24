@@ -14,6 +14,7 @@ interface Props {
   isDepositDisabled?: boolean;
   mint: () => void;
   isMinting: boolean;
+  isDisabled: boolean;
 }
 
 const LoanCard = ({
@@ -28,6 +29,7 @@ const LoanCard = ({
   isDepositDisabled = true,
   mint,
   isMinting,
+  isDisabled,
 }: Props) => {
   const [amount, setAmount] = useState("");
 
@@ -39,7 +41,7 @@ const LoanCard = ({
           <span className="text-custom-pink-1">{selectedAsset}</span>
         </div>
 
-        <Button onClick={mint} isLoading={isMinting} disabled={isMinting}>
+        <Button onClick={mint} isLoading={isMinting} disabled={isDisabled || isMinting}>
           Mint {selectedAsset}
         </Button>
       </div>
@@ -47,7 +49,7 @@ const LoanCard = ({
         <div className="flex items-center justify-between mb-8">
           <div>{isApproved ? "Approved" : "Approve"} BeachBar</div>
           <Button
-            disabled={isApproving || isApproved}
+            disabled={isDisabled || isApproving || isApproved}
             isLoading={isApproving}
             onClick={onApprove}
           >
@@ -58,13 +60,13 @@ const LoanCard = ({
         <div className="flex justify-between items-center font-bebas-neue">
           <div className="text-lg">Amount Deposited:</div>
           <span className="text-2xl text-custom-pink-2">
-            {deposited} {selectedAsset}
+            {deposited || 0} {selectedAsset}
           </span>
         </div>
 
         <div className="flex justify-between items-center font-bebas-neue">
           <div className="text-lg">In Wallet:</div>
-          <span className="text-2xl text-custom-purple">{assetBalance}</span>
+          <span className="text-2xl text-custom-purple">{assetBalance || 0}</span>
         </div>
 
         <div className="flex justify-between items-center mt-6">
@@ -76,7 +78,7 @@ const LoanCard = ({
             className="bg-transparent border-b-2 border-custom-green p-1"
           />
           <Button
-            disabled={isDepositDisabled}
+            disabled={isDisabled || isDepositDisabled}
             onClick={() =>
               onDeposit({ amount: amount ? parseFloat(amount) : 0 })
             }
