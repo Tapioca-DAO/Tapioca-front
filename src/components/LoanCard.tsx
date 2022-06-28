@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Button from "@/components/Button";
+import Input from "@/components/Input";
+import MaxButton from "@/images/Max-button.png";
 
 interface Props {
   selectedAsset?: string;
@@ -34,60 +36,57 @@ const LoanCard = ({
   const [amount, setAmount] = useState("");
 
   return (
-    <div className="flex flex-col md:basis-2/5 mx-4">
-      <div className="flex justify-between items-center w-full mb-2">
+    <div className="w-full p-4 bg-custom-grey-3 rounded-[20px] border-2 hover:border-custom-purple border-zinc-700">
+      <div className="flex justify-between items-center w-full">
         <div className="font-bebas-neue text-2xl">
           {isCollateral ? "Collateral" : "Asset"}:{" "}
           <span className="text-custom-pink-1">{selectedAsset}</span>
         </div>
 
-        <Button onClick={mint} isLoading={isMinting} disabled={isDisabled || isMinting}>
-          Mint {selectedAsset}
-        </Button>
-      </div>
-      <div className="rounded-lg border-2 border-custom-blue bg-custom-grey-4 p-4">
-        <div className="flex items-center justify-between mb-8">
-          <div>{isApproved ? "Approved" : "Approve"} BeachBar</div>
+        <div className="flex items-center">
           <Button
             disabled={isDisabled || isApproving || isApproved}
             isLoading={isApproving}
             onClick={onApprove}
           >
-            Approve {selectedAsset}
+            {isApproved ? "Approved" : "Approve"}
           </Button>
-        </div>
 
-        <div className="flex justify-between items-center font-bebas-neue">
-          <div className="text-lg">Amount Deposited:</div>
-          <span className="text-2xl text-custom-pink-2">
-            {deposited || 0} {selectedAsset}
-          </span>
-        </div>
-
-        <div className="flex justify-between items-center font-bebas-neue">
-          <div className="text-lg">In Wallet:</div>
-          <span className="text-2xl text-custom-purple">{assetBalance || 0}</span>
-        </div>
-
-        <div className="flex justify-between items-center mt-6">
-          <input
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            type="number"
-            placeholder="0.0"
-            className="bg-transparent border-b-2 border-custom-green p-1"
-          />
           <Button
-            disabled={isDisabled || isDepositDisabled}
-            onClick={() =>
-              onDeposit({ amount: amount ? parseFloat(amount) : 0 })
-            }
-            buttonColor="blue"
+            customClasses="ml-2"
+            onClick={mint}
+            isLoading={isMinting}
+            disabled={isDisabled || isMinting}
           >
-            {isCollateral ? "Lend" : "Deposit"}
+            Mint
           </Button>
         </div>
       </div>
+
+      <div className="my-10">
+        <Input
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          type="number"
+          placeholder="0.0"
+          customRightItem={
+            <button onClick={() => setAmount(assetBalance || "0")}>
+              <img src={MaxButton} />
+            </button>
+          }
+          label={`Deposited: ${deposited || 0} ${selectedAsset}`}
+          subLabel={`Balance: ${assetBalance || 0}`}
+        />
+      </div>
+
+      <Button
+        customClasses="w-full"
+        disabled={isDisabled || isDepositDisabled}
+        onClick={() => onDeposit({ amount: amount ? parseFloat(amount) : 0 })}
+        buttonColor="blue"
+      >
+        {isCollateral ? "Lend" : "Deposit"}
+      </Button>
     </div>
   );
 };
