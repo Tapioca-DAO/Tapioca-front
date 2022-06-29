@@ -1,4 +1,4 @@
-import Button from "@/components/Button";
+import Button from "@/components/base/Button";
 import Bubbles from "@/images/Bubbles";
 import formatter from "@/utils/dolarFormater";
 

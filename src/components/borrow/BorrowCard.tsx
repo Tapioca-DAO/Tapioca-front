@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import GetToken from "@/images/GetToken";
 import { useState } from "react";
-import Input from "@/components/Input";
+import Input from "@/components/base/Input";
 import MaxButton from "@/images/Max-button.png";
 import WalletButton from "@/images/Wallet-button.png";
-import Button from "@/components/Button";
+import Button from "@/components/base/Button";
 import BubbleGreen from "@/images/BubbleGreen";
 import { borrowHooks } from "@/utils/borrowHooks";
 

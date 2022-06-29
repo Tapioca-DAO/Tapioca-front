@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import GroupButton from "@/components/GroupButton";
+import GroupButton from "@/components/base/GroupButton";
 import Yes from "@/images/Yes";
 import No from "@/images/No";
-import Button from "@/components/Button";
+import Button from "@/components/base/Button";
 import HelpModal from "@/components/HelpModal";
 
 interface Props {

@@ -1,5 +1,5 @@
 import React from "react";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/base/LoadingSpinner";
 
 const BUTTON_BASE_CLASS =
   "font-bebas-neue rounded-lg	border-4 text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed";

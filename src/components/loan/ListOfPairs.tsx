@@ -5,9 +5,9 @@ import { PAIR_LIST } from "@/utils/constants";
 import formatter from "@/utils/dolarFormater";
 import GetToken from "@/images/GetToken";
 import BubbleGreen from "@/images/BubbleGreen";
-import Button from "@/components/Button";
+import Button from "@/components/base/Button";
 import SearchIcon from "@/images/SearchIcon";
-import Input from "@/components/Input";
+import Input from "@/components/base/Input";
 
 const HEADER_BASE_STYLES =
   "p-2 w-1/6 text-center hidden md:flex flex-col justify-center";

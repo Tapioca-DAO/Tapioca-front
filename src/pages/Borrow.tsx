@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import BorrowSelectTokenCard from "@/components/BorrowSelectTokenCard";
-import BorrowTitle from "@/components/BorrowTitle";
+import BorrowSelectTokenCard from "@/components/borrow/BorrowSelectTokenCard";
+import BorrowTitle from "@/components/borrow/BorrowTitle";
 import { TOKENS_SYMBOLS, BORROW_TOKEN_LIST } from "@/utils/tokens";
-import BorrowFooter from "@/components/BorrowFooter";
+import BorrowFooter from "@/components/borrow/BorrowFooter";
 
 const Borrow = () => {
 

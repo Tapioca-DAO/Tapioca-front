@@ -1,5 +1,5 @@
-import LoanCard from "@/components/LoanCard";
-import LeadTitle from "@/components/LeadTitle";
+import LoanCard from "@/components/loan/LoanCard";
+import LeadTitle from "@/components/base/LeadTitle";
 import { loanHooks } from "@/utils/loanHooks";
 import { PAIR_LIST } from "@/utils/constants";
 import formatter from "@/utils/dolarFormater";

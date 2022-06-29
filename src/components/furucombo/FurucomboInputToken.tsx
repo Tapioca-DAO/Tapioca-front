@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import uuid from "uuid";
 import { ComboList } from "@/pages/Flashloans";
-import SelectDropdown from "@/components/SelectDropdown";
+import SelectDropdown from "@/components/base/SelectDropdown";
 
 interface Props {
   tokens?: string[];

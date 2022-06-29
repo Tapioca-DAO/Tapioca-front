@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { TOKENS_SYMBOLS } from "@/utils/tokens";
 
 import Menu from "@/images/Menu";
-import GroupButton from "@/components/GroupButton";
+import GroupButton from "@/components/base/GroupButton";
 import formatAddress from "@/utils/formatAddress";
 import { WalletContext } from "@/providers/WalletContext";
 import { NavLink, useLocation } from "react-router-dom";
@@ -72,7 +72,7 @@ const Header = () => {
               `px-1 ${isActive ? "text-custom-blue" : ""}`
             }
           >
-            loan
+            Loan
           </NavLink>
         </ul>
       </div>

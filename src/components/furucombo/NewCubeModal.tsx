@@ -4,7 +4,7 @@ import { FURUCOMBO_CUBES } from "@/utils/constants";
 import Close from "@/images/Close";
 import GradientButton from "@/components/furucombo/GradientButton";
 import SearchIcon from "@/images/SearchIcon";
-import Input from "@/components/Input";
+import Input from "@/components/base/Input";
 
 interface Props {
   closeModal: () => void;

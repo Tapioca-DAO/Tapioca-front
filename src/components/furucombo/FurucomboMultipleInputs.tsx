@@ -6,7 +6,7 @@ import {
   OutputEstimateProps,
   OutputOptionsProps,
 } from "@/pages/Flashloans";
-import SelectDropdown from "@/components/SelectDropdown";
+import SelectDropdown from "@/components/base/SelectDropdown";
 import FurucomboTokenImage from "./FurucomboTokenImage";
 
 interface Props {

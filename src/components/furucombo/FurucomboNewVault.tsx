@@ -3,7 +3,7 @@ import uuid from "uuid";
 import { useTranslation } from "react-i18next";
 import { ComboList, AssetsOptionsProps } from "@/pages/Flashloans";
 import FurucomboTokenImage from "./FurucomboTokenImage";
-import SelectDropdown from "@/components/SelectDropdown";
+import SelectDropdown from "@/components/base/SelectDropdown";
 
 interface Props {
   setCardCube: (props: ComboList) => void;

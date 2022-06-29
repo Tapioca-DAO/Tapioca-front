@@ -4,7 +4,7 @@ import { WalletContext } from "@/providers/WalletContext";
 import Loan from "@/components/loan/Loan";
 import ListOfPairs from "@/components/loan/ListOfPairs";
 import { getQuery } from "@/utils/getQuery";
-import LoadingSpinner from "@/components/LoadingSpinner";
+import LoadingSpinner from "@/components/base/LoadingSpinner";
 
 const MAIN_QUERY = "main";
 const COLLATERAL_QUERY = "collateral";
