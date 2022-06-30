@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "@/components/base/Button";
 import Input from "@/components/base/Input";
 import MaxButton from "@/images/Max-button.png";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   selectedAsset?: string;
@@ -33,14 +34,16 @@ const LoanCard = ({
   isMinting,
   isDisabled,
 }: Props) => {
+  const { t } = useTranslation();
+
   const [amount, setAmount] = useState("");
 
   return (
     <div className="w-full p-4 bg-custom-grey-3 rounded-[20px] border-2 hover:border-custom-purple border-zinc-700">
       <div className="flex justify-between items-center w-full">
         <div className="font-bebas-neue text-2xl">
-          {isCollateral ? "Collateral" : "Asset"}:{" "}
-          <span className="text-custom-pink-1">{selectedAsset}</span>
+          {t(isCollateral ? "loan.collateral" : "loan.asset")}:
+          <span className="text-custom-pink-1"> {selectedAsset}</span>
         </div>
 
         <div className="flex items-center">
@@ -49,7 +52,7 @@ const LoanCard = ({
             isLoading={isApproving}
             onClick={onApprove}
           >
-            {isApproved ? "Approved" : "Approve"}
+            {t(isApproved ? "loan.approved" : "loan.approve")}
           </Button>
 
           <Button
@@ -58,7 +61,7 @@ const LoanCard = ({
             isLoading={isMinting}
             disabled={isDisabled || isMinting}
           >
-            Mint
+            {t("loan.mint")}
           </Button>
         </div>
       </div>
@@ -74,8 +77,13 @@ const LoanCard = ({
               <img src={MaxButton} />
             </button>
           }
-          label={`Deposited: ${deposited || 0} ${selectedAsset}`}
-          subLabel={`Balance: ${assetBalance || 0}`}
+          label={t("loan.deposited", {
+            amount: deposited || 0,
+            asset: selectedAsset,
+          })}
+          subLabel={t("loan.balance", {
+            amount: assetBalance || 0,
+          })}
         />
       </div>
 
@@ -85,7 +93,7 @@ const LoanCard = ({
         onClick={() => onDeposit({ amount: amount ? parseFloat(amount) : 0 })}
         buttonColor="blue"
       >
-        {isCollateral ? "Lend" : "Deposit"}
+        {t(isCollateral ? "loan.lend" : "loan.deposit")}
       </Button>
     </div>
   );

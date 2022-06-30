@@ -25,7 +25,7 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
     <div>
       <div className="mt-1 px-2">
         <div className="px-3">
-          <div className="text-custom-grey-1">{t("furucombo.address")}</div>
+          <div className="text-custom-grey-1">{t("flashloans.address")}</div>
           <input
             className={`bg-transparent border-b py-2 w-full ${
               addressHasError ? "border-red-500" : ""
@@ -41,7 +41,7 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
             </div>
           ) : null}
 
-          <div className="text-custom-grey-1 mt-4">{t("furucombo.input")}</div>
+          <div className="text-custom-grey-1 mt-4">{t("flashloans.input")}</div>
           <div className="flex justify-between">
             <SelectDropdown
               selectedOption={selectedOption}
@@ -61,7 +61,7 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
             <div className="pt-3">
               <div className="flex justify-between">
                 <p className="text-xs text-zinc-400">
-                  {t("furucombo.combo.tokenDebt", { token: selectedOption })}
+                  {t("flashloans.combo.tokenDebt", { token: selectedOption })}
                 </p>
 
                 <p className="text-sm">
@@ -71,21 +71,21 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
 
               <div className="flex justify-between pt-1">
                 <p className="text-xs text-zinc-400">
-                  {t("furucombo.combo.totalDebt")}
+                  {t("flashloans.combo.totalDebt")}
                 </p>
                 <p className="text-sm">$0</p>
               </div>
 
               <div className="flex justify-between pt-1">
                 <p className="text-xs text-zinc-400">
-                  {t("furucombo.combo.totalCollateral")}
+                  {t("flashloans.combo.totalCollateral")}
                 </p>
                 <p className="text-sm">$0</p>
               </div>
 
               <div className="flex justify-between pt-1">
                 <p className="text-xs text-zinc-400">
-                  {t("furucombo.combo.utilization")}
+                  {t("flashloans.combo.utilization")}
                 </p>
                 <p className="text-sm">0%</p>
               </div>
@@ -96,7 +96,7 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
             <div className="pt-3">
               <div className="flex justify-between">
                 <p className="text-xs text-zinc-400">
-                  {t("furucombo.combo.outstandingDebt")}
+                  {t("flashloans.combo.outstandingDebt")}
                 </p>
 
                 <p className="text-sm">
@@ -121,7 +121,7 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
       >
-        {t("furucombo.set")}
+        {t("flashloans.set")}
       </button>
     </div>
   );

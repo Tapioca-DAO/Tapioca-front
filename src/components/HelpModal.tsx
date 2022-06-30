@@ -1,13 +1,15 @@
-import Close from "@/images/Close";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import ReactPlayer from "react-player";
 import { SourceProps } from "react-player/base";
+import Close from "@/images/Close";
 
 interface Props {
   video: string | string[] | SourceProps[] | MediaStream;
 }
 
 const HelpModal = ({ video }: Props) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -41,12 +43,12 @@ const HelpModal = ({ video }: Props) => {
 
   return (
     <div>
-      <div className="fixed right-6 bottom-6 bg-custom-purple p-2 px-4 rounded-full">
+      <div className="fixed right-6 bottom-6">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center font-bebas-neue"
+          className="flex items-center font-bebas-neue bg-custom-purple p-2 px-4 rounded-full"
         >
-          Need Help?
+          {t("base.needHelp")}
         </button>
       </div>
 

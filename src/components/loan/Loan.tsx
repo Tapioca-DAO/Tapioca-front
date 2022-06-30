@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import LoanCard from "@/components/loan/LoanCard";
 import LeadTitle from "@/components/base/LeadTitle";
 import { loanHooks } from "@/utils/loanHooks";
@@ -13,6 +14,7 @@ interface Props {
 }
 
 const Loan = ({ main, collateral, isDisabled }: Props) => {
+  const { t } = useTranslation();
   const useContract = loanHooks();
 
   const {
@@ -44,7 +46,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
     <div className="md:m-8 md:flex justify-center">
       <div className="w-full md:basis-3/4 md:bg-custom-grey-4/50 rounded-[30px] mr-4">
         <LeadTitle
-          title={`Loan ${main}`}
+          title={t("loan.loan", { main })}
           customClasses="flex items-center justify-between"
         >
           <div className="flex items-center">
@@ -99,33 +101,33 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
 
       <div className="basis-1/4 md:bg-custom-grey-4/50 md:rounded-[30px] flex flex-col justify-between">
         <div>
-          <LeadTitle title="Market" />
+          <LeadTitle title={t("loan.market")} />
 
           <div className="p-3 md:px-8">
             <div className="flex justify-between pt-2 text-sm">
-              <div>{main} Price</div>
+              <div>{t("loan.price", { main })}</div>
               <div className="text-zinc-400">
                 {formatter.format(pair?.tokenPrice || 0)}
               </div>
             </div>
 
             <div className="flex justify-between pt-2 text-sm">
-              <div>APR</div>
+              <div>{t("loan.apr")}</div>
               <div className="text-zinc-400">{pair?.apr}%</div>
             </div>
 
             <div className="flex justify-between pt-2 text-sm">
-              <div>LTV</div>
+              <div>{t("loan.ltv")}</div>
               <div className="text-zinc-400">{pair?.ltv}%</div>
             </div>
 
             <div className="flex justify-between pt-2 text-sm">
-              <div>Strategy</div>
+              <div>{t("loan.strategy")}</div>
               <div className="text-zinc-400">{pair?.strategy}</div>
             </div>
 
             <div className="flex justify-between pt-2 text-sm">
-              <div>Oracle</div>
+              <div>{t("loan.oracle")}</div>
               <div className="text-zinc-400">{pair?.oracle}</div>
             </div>
           </div>

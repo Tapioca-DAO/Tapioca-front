@@ -1,5 +1,6 @@
 import React from "react";
 import LoadingSpinner from "@/components/base/LoadingSpinner";
+import { useTranslation } from "react-i18next";
 
 const BUTTON_BASE_CLASS =
   "font-bebas-neue rounded-lg	border-4 text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed";
@@ -26,6 +27,8 @@ const Button = ({
   screenReaderText,
   ...htmlAttributes
 }: Props) => {
+  const { t } = useTranslation();
+
   const buttonClassName = [
     customClasses ? customClasses : null,
     BUTTON_BASE_CLASS,
@@ -39,7 +42,7 @@ const Button = ({
       {isLoading ? (
         <div className="flex items-center justify-center">
           <LoadingSpinner xsmall />
-          {screenReaderText || "Loading"}
+          {screenReaderText || t("base.loading")}
         </div>
       ) : (
         children

@@ -1,6 +1,6 @@
 import Button from "@/components/base/Button";
 import Bubbles from "@/images/Bubbles";
-import formatter from "@/utils/dolarFormater";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   pair?: {
@@ -46,6 +46,8 @@ const CardRight = ({
   collateralAmount,
   mainAmount,
 }: Props) => {
+  const { t } = useTranslation();
+
   const tokenPrice = pair?.tokenPrice || 1;
   const available = pair?.available || 0;
   const borrowed = pair?.borrowed || 0;
@@ -60,11 +62,9 @@ const CardRight = ({
           parseFloat(collateralAmount)
         ).toFixed(5);
 
-  console.log("main", mainAmount);
-
   const liquidationPrice =
     !collateralAmount || !mainAmount
-      ? "None"
+      ? t("borrow.borrowAssets.none")
       : `1 ${collateral} = ${(
           (liquidation * parseFloat(mainAmount)) /
           parseFloat(collateralAmount)
@@ -77,27 +77,27 @@ const CardRight = ({
       </div>
 
       <div className="hidden md:flex flex-col mt-4 w-full">
-        <div>Market</div>
+        <div>{t("borrow.borrowAssets.market")}</div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>APR</div>
+          <div>{t("borrow.borrowAssets.apr")}</div>
           <div>{pair?.apr || 0}%</div>
         </div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>LTV</div>
+          <div>{t("borrow.borrowAssets.ltv")}</div>
           <div>{pair?.ltv || 0}%</div>
         </div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Availalble</div>
+          <div>{t("borrow.borrowAssets.available")}</div>
           <div>
             {parseFloat((available / tokenPrice).toFixed(3))} {main}
           </div>
         </div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Borrowed</div>
+          <div>{t("borrow.borrowAssets.borrowed")}</div>
           <div>
             {parseFloat((borrowed / tokenPrice).toFixed(3))} {main}
           </div>
@@ -108,30 +108,34 @@ const CardRight = ({
             buttonColor="pink"
             customClasses="w-full text-md py-0.5 px-0 bg-custom-grey-3"
           >
-            accrue
+            {t("borrow.borrowAssets.accrue")}
           </Button>
           <Button
             buttonColor="pink"
             customClasses="w-full text-md py-0.5 px-0 bg-custom-grey-3"
           >
-            update price
+            {t("borrow.borrowAssets.upodatePrice")}
           </Button>
         </div>
 
         <div className="flex justify-between mt-6 text-zinc-300">
-          <div>Oracle</div>
+          <div>{t("borrow.borrowAssets.oracle")}</div>
           <div className="text-zinc-400">{pair?.oracle}</div>
         </div>
 
         <div className="flex justify-between mt-3 text-zinc-300">
-          <div>Strategy</div>
+          <div>{t("borrow.borrowAssets.strategy")}</div>
           <div className="text-zinc-400">{pair?.strategy}</div>
         </div>
 
-        <div className="text-zinc-300 mt-6">Liquidation Price</div>
+        <div className="text-zinc-300 mt-6">
+          {t("borrow.borrowAssets.liquidationPrice")}
+        </div>
         <div className="text-xs text-custom-blue">{liquidationPrice}</div>
 
-        <div className="text-zinc-300 mt-3">Position Health</div>
+        <div className="text-zinc-300 mt-3">
+          {t("borrow.borrowAssets.positionHealth")}
+        </div>
         <div className="text-xs flex text-custom-blue">
           0%
           <SmallArrow />
@@ -142,7 +146,7 @@ const CardRight = ({
           buttonColor="pink"
           customClasses="w-full text-md py-0.5 px-0 bg-custom-grey-3 my-3"
         >
-          rebalance
+          {t("borrow.borrowAssets.rebalance")}
         </Button>
       </div>
     </div>

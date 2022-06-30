@@ -105,7 +105,7 @@ const FurucomboPool = ({
           <div className="pt-4">
             <div className="flex justify-between">
               <p className="text-xs text-zinc-400">
-                {t("furucombo.combo.currentlyStaked")}
+                {t("flashloans.combo.currentlyStaked")}
               </p>
 
               <p className="text-sm">
@@ -115,7 +115,7 @@ const FurucomboPool = ({
 
             <div className="flex justify-between pt-1">
               <p className="text-xs text-zinc-400">
-                {t("furucombo.combo.rewardsAvailable")}
+                {t("flashloans.combo.rewardsAvailable")}
               </p>
               <p className="text-sm">
                 0 <span className="text-zinc-400">SNX</span>
@@ -138,7 +138,7 @@ const FurucomboPool = ({
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
       >
-        {t("furucombo.set")}
+        {t("flashloans.set")}
       </button>
     </div>
   );

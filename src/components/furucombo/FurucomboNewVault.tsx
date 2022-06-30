@@ -44,7 +44,7 @@ const FurucomboNewVault = ({
   return (
     <div>
       <div className="mt-1 px-2">
-        <div className="text-custom-grey-1">{t("furucombo.asset")}</div>
+        <div className="text-custom-grey-1">{t("flashloans.asset")}</div>
         <div className="w-1/2">
           <SelectDropdown
             selectedOption={vault}
@@ -54,7 +54,7 @@ const FurucomboNewVault = ({
         </div>
 
         <div className="mt-2">
-          <div className="text-custom-grey-1">{t("furucombo.input")}</div>
+          <div className="text-custom-grey-1">{t("flashloans.input")}</div>
           <div className="mt-2 flex items-center justify-between">
             <div className="flex items-center">
               <FurucomboTokenImage token={selectedVault?.input} />
@@ -72,7 +72,7 @@ const FurucomboNewVault = ({
         </div>
 
         <div className="mt-4">
-          <div className="text-custom-grey-1">{t("furucombo.output")}</div>
+          <div className="text-custom-grey-1">{t("flashloans.output")}</div>
           <div className="mt-2 flex items-center justify-between">
             <div className="flex items-center">
               <FurucomboTokenImage token={selectedVault?.output} />
@@ -102,7 +102,7 @@ const FurucomboNewVault = ({
         <div className="pt-4">
           <div className="flex justify-between">
             <p className="text-xs text-zinc-300">
-              {t("furucombo.combo.availableToGenerate")}
+              {t("flashloans.combo.availableToGenerate")}
             </p>
             <p className="text-sm">
               {availableToGenerate} {selectedVault?.output}
@@ -111,13 +111,13 @@ const FurucomboNewVault = ({
 
           <div className="flex justify-between pt-1">
             <p className="text-xs text-zinc-300">
-              {t("furucombo.combo.collateralizationRatio")}
+              {t("flashloans.combo.collateralizationRatio")}
             </p>
             <p className="text-sm">{collateralizationRatio}</p>
           </div>
 
           <p className="pt-1 text-xs text-zinc-300">
-            {t("furucombo.combo.stabilityFee", { amount: selectedVault?.fee })}
+            {t("flashloans.combo.stabilityFee", { amount: selectedVault?.fee })}
           </p>
         </div>
       </div>
@@ -140,7 +140,7 @@ const FurucomboNewVault = ({
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
       >
-        {t("furucombo.set")}
+        {t("flashloans.set")}
       </button>
     </div>
   );

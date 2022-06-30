@@ -8,6 +8,7 @@ import BubbleGreen from "@/images/BubbleGreen";
 import Button from "@/components/base/Button";
 import SearchIcon from "@/images/SearchIcon";
 import Input from "@/components/base/Input";
+import { useTranslation } from "react-i18next";
 
 const HEADER_BASE_STYLES =
   "p-2 w-1/6 text-center hidden md:flex flex-col justify-center";
@@ -15,6 +16,7 @@ const MARKET_STYLES =
   "flex items-center justify-between p-2 md:w-24 border-b-2 border-custom-green md:border-0";
 
 const ListOfPairs = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -30,27 +32,27 @@ const ListOfPairs = () => {
     <div>
       <div className="flex md:mt-14 mt-2 text-center border-b-4 border-custom-green">
         <div className="px-2 md:text-5xl text-2xl font-bebas-neue mx-1">
-          Loan Market
+          {t("loan.loanMarket")}
         </div>
       </div>
 
       <div className="w-full mt-4">
         <Input
           customLeftItem={<SearchIcon />}
-          placeholder="Search by token or pair"
+          placeholder={t("loan.search")}
           customClasses="w-full px-2 mb-6"
           color="purple"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className="hidden md:flex text-sm text-zinc-300 px-6 mb-1">
-          <div className={MARKET_STYLES}>Markets</div>
-          <div className={HEADER_BASE_STYLES}>Asset</div>
-          <div className={HEADER_BASE_STYLES}>Collateral</div>
-          <div className={HEADER_BASE_STYLES}>Oracle</div>
-          <div className={HEADER_BASE_STYLES}>Borrowed</div>
-          <div className={HEADER_BASE_STYLES}>Available</div>
-          <div className={HEADER_BASE_STYLES}>APR</div>
+          <div className={MARKET_STYLES}>{t("loan.markets")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("loan.asset")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("loan.collateral")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("loan.oracle")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("loan.borrowed")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("loan.available")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("loan.apr")}</div>
         </div>
         {filteredList.map(
           (
@@ -118,12 +120,12 @@ const ListOfPairs = () => {
               <div className="md:hidden">
                 <div className="flex p-4 justify-between">
                   <div>
-                    <div className="text-zinc-400">APR</div>
+                    <div className="text-zinc-400">{t("loan.apr")}</div>
                     <div className="text-lg">{apr}%</div>
-                    <div className="text-zinc-400">Chainlink</div>
+                    <div className="text-zinc-400">{t("loan.chainlink")}</div>
                   </div>
                   <div>
-                    <div className="text-zinc-400">Liquidity</div>
+                    <div className="text-zinc-400">{t("loan.liquidity")}</div>
                     <div className="text-lg">1,165,049 {token}</div>
                     <div className="text-sm text-zinc-400">$1,165,281</div>
                   </div>
@@ -137,7 +139,7 @@ const ListOfPairs = () => {
                       navigate(`/loan?main=${token}&collateral=${collateral}`)
                     }
                   >
-                    Loan
+                    {t("loan.loan")}
                   </Button>
                 </div>
               </div>

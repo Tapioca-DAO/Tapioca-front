@@ -26,7 +26,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
         <div className="pt-3">
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.currentTokenLocked", { token })}
+              {t("flashloans.combo.currentTokenLocked", { token })}
             </p>
 
             <p className="text-sm">
@@ -36,7 +36,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
 
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.ableToWithdraw")}
+              {t("flashloans.combo.ableToWithdraw")}
             </p>
 
             <p className="text-sm">
@@ -46,7 +46,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
 
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.collateralizationRatio")}
+              {t("flashloans.combo.collateralizationRatio")}
             </p>
 
             <p className="text-sm text-zinc-400">N/A</p>
@@ -60,7 +60,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
         <div className="pt-3">
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.availableToGenerate")}
+              {t("flashloans.combo.availableToGenerate")}
             </p>
 
             <p className="text-sm">
@@ -70,7 +70,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
 
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.collateralizationRatio")}
+              {t("flashloans.combo.collateralizationRatio")}
             </p>
 
             <p className="text-sm text-zinc-400">N/A</p>
@@ -84,7 +84,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
         <div className="pt-3">
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.outstandingTokenDebt", { token })}
+              {t("flashloans.combo.outstandingTokenDebt", { token })}
             </p>
 
             <p className="text-sm">
@@ -94,7 +94,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
 
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.collateralizationRatio")}
+              {t("flashloans.combo.collateralizationRatio")}
             </p>
 
             <p className="text-sm text-zinc-400">N/A</p>
@@ -107,7 +107,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
         <div className="pt-3">
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.currentTokenLocked", { token })}
+              {t("flashloans.combo.currentTokenLocked", { token })}
             </p>
 
             <p className="text-sm">
@@ -117,7 +117,7 @@ const FooterText = ({ currentSelection, token }: FooterTextProps) => {
 
           <div className="flex justify-between">
             <p className="text-xs text-zinc-400">
-              {t("furucombo.combo.collateralizationRatio")}
+              {t("flashloans.combo.collateralizationRatio")}
             </p>
 
             <p className="text-sm text-zinc-400">N/A</p>
@@ -146,7 +146,7 @@ const FurucomboVault = ({
     <div>
       <div className="mt-1 px-2">
         <div className="px-3">
-          <div className="text-custom-grey-1">{t("furucombo.vault")}</div>
+          <div className="text-custom-grey-1">{t("flashloans.vault")}</div>
           <div className="flex items-center">
             <div className="mr-3 text-2xl">#</div>
             <input
@@ -206,7 +206,7 @@ const FurucomboVault = ({
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
       >
-        {t("furucombo.set")}
+        {t("flashloans.set")}
       </button>
     </div>
   );

@@ -5,6 +5,7 @@ import Close from "@/images/Close";
 import GradientButton from "@/components/furucombo/GradientButton";
 import SearchIcon from "@/images/SearchIcon";
 import Input from "@/components/base/Input";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   closeModal: () => void;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const NewCubeModal = ({ closeModal, selectCube }: Props) => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -64,7 +66,7 @@ const NewCubeModal = ({ closeModal, selectCube }: Props) => {
           <div className="md:p-4 p-0.5">
             <div className="flex justify-between">
               <Close onClick={closeModal} />
-              <div>New Cube</div>
+              <div>{t("flashloans.newCube")}</div>
               <div />
             </div>
 
@@ -72,7 +74,7 @@ const NewCubeModal = ({ closeModal, selectCube }: Props) => {
               <div className="flex flex-col items-center mt-1 md:w-2/3 w-full">
                 <Input
                   customLeftItem={<SearchIcon />}
-                  placeholder="Search defi or action"
+                  placeholder={t("flashloans.search")}
                   customClasses="md:w-[600px] px-2 mb-6"
                   color="purple"
                   value={search}

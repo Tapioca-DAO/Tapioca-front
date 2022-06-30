@@ -48,7 +48,7 @@ const Header = () => {
               `px-1 ${isActive ? "text-custom-blue" : ""}`
             }
           >
-            Borrow
+            {t("header.links.borrow")}
           </NavLink>
           <NavLink
             to="/borrow-test"
@@ -56,7 +56,7 @@ const Header = () => {
               `px-1 ${isActive ? "text-custom-blue" : ""}`
             }
           >
-            Borrow WETH/USDC
+            {t("header.links.borrowTest")}
           </NavLink>
           <NavLink
             to="/flashloans"
@@ -64,7 +64,7 @@ const Header = () => {
               `px-1 ${isActive ? "text-custom-blue" : ""}`
             }
           >
-            Flashloans
+            {t("header.links.flashloans")}
           </NavLink>
           <NavLink
             to="/loan"
@@ -72,7 +72,7 @@ const Header = () => {
               `px-1 ${isActive ? "text-custom-blue" : ""}`
             }
           >
-            Loan
+            {t("header.links.loan")}
           </NavLink>
         </ul>
       </div>

@@ -60,7 +60,7 @@ const SelectedCard = ({
               className="text-xs underline"
               onClick={() => removeItem(id)}
             >
-              {t("delete")}
+              {t("flashloans.delete")}
             </button>
           </div>
 

@@ -47,7 +47,7 @@ const BorrowFooter = ({
           }
           customClasses="bg-custom-grey-3 md:text-2xl py-0.5 md:w-72 w-full md:mr-2 my-4"
         >
-          {t("continue")}
+          {t("borrow.continue")}
         </Button>
 
         <div className="flex items-center justify-center">

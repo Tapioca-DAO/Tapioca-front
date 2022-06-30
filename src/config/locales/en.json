@@ -1,8 +1,18 @@
 {
+  "base": {
+    "loading": "Loading",
+    "needHelp": "Need Help?"
+  },
   "header": {
     "connectWallet": "Connect Wallet",
     "borrow": "Borrow",
-    "mixologist": "Mixologist"
+    "mixologist": "Mixologist",
+    "links": {
+      "borrow": "Borrow",
+      "borrowTest": "Borrow WETH/USDC",
+      "flashloans": "Flashloans",
+      "loan": "Loan"
+    }
   },
   "borrow": {
     "borrowAgainstYourTokens": "<0>borrow</0> against your tokens liquidi<0>tea</0>, <1>without selling</1> them!",
@@ -12,6 +22,9 @@
     "chooseBorrowToken": "Choose what token you want to borrow against",
     "currentSelection": "<0>Currently Borrowing </0><1>{{main}}</1> with Your <1>{{collateral}}</1>",
     "noviceMode": "Novice Mode",
+    "chainlink": "Chainlink",
+    "approve": "Approve",
+    "continue": "Continue",
     "borrowAssets": {
       "addCollateral": "Add collateral in order to borrow assets",
       "addCollateral_mobile": "Add collateral in order to borrow",
@@ -23,10 +36,20 @@
       "apr": "APR",
       "addCollateralFrom": "Add {{token}} collateral",
       "borrowTo": "Borrow {{token}}",
-      "balance": "Balance {{amount}}"
+      "balance": "Balance {{amount}}",
+      "none": "None",
+      "market": "Market",
+      "ltv": "LTV",
+      "available": "Availalble",
+      "accrue": "Accrue",
+      "upodatePrice": "Update Price",
+      "strategy": "Strategy",
+      "liquidationPrice": "Liquidation Price",
+      "positionHealth": "Position Health",
+      "rebalance": "Rebalance"
     }
   },
-  "furucombo": {
+  "flashloans": {
     "output": "Output",
     "input": "Input",
     "address": "Address",
@@ -36,6 +59,9 @@
     "vault": "Vault",
     "pool": "Pool",
     "asset": "Asset",
+    "newCube": "New Cube",
+    "search": "Search defi or action",
+    "delete": "Delete",
     "combo": {
       "retroactiveRewards": "Retroactive rewards",
       "stakingComboRewards": "Staking COMBO rewards",
@@ -58,13 +84,34 @@
       "stabilityFee": "Stability fee | {{amount}}%"
     }
   },
+  "loan": {
+    "loan": "Loan {{main}}",
+    "market": "Market",
+    "loanMarket": "Loan Market",
+    "search": "Search by token or pair",
+    "markets": "Markets",
+    "asset": "Asset",
+    "collateral": "Collateral",
+    "oracle": "Oracle",
+    "borrowed": "Borrowed",
+    "available": "Available",
+    "apr": "APR",
+    "chainlink": "Chainlink",
+    "liquidity": "Liquidity",
+    "ltv": "LTV",
+    "strategy": "Strategy",
+    "price": "{{main}} Price",
+    "approve": "Approve",
+    "approved": "Approved",
+    "mint": "Mint",
+    "lend": "Lend",
+    "deposit": "Deposit",
+    "deposited": "Deposited {{amount}} {{asset}}",
+    "balance": "Balance {{amount}}"
+  },
   "errors": {
     "invalidAddress": "Invalid Address",
     "notVaultOwner": "You're not the vault owner",
     "minimumTokenGenerated": "Minimum {{value}} {{token}} must be generated"
-  },
-  "continue": "Continue",
-  "delete": "Delete",
-  "needHelp": "Need Help?",
-  "approve": "Approve"
+  }
 }

@@ -46,7 +46,7 @@ const FurucomboSwap = ({
     <div>
       <div className="my-1 px-5">
         <div>
-          <div className="text-custom-grey-1">{t("furucombo.input")}</div>
+          <div className="text-custom-grey-1">{t("flashloans.input")}</div>
           <div className="flex justify-between">
             {inputOptions.length > 1 ? (
               <SelectDropdown
@@ -80,7 +80,7 @@ const FurucomboSwap = ({
         </div>
 
         <div className="mt-6">
-          <div className="text-custom-grey-1">{t("furucombo.output")}</div>
+          <div className="text-custom-grey-1">{t("flashloans.output")}</div>
           {currentOptions.map(({ token, total }) => (
             <div className="flex items-center justify-between mt-3" key={token}>
               <div className="flex items-center">
@@ -106,7 +106,7 @@ const FurucomboSwap = ({
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
       >
-        {t("furucombo.set")}
+        {t("flashloans.set")}
       </button>
     </div>
   );

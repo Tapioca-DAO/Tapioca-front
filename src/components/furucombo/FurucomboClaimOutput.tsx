@@ -22,7 +22,7 @@ const FurucomboClaimOutput = ({
     <div>
       <div className="mt-1 px-2">
         <div className="px-3">
-          <div className="text-custom-grey-1">{t("furucombo.output")}</div>
+          <div className="text-custom-grey-1">{t("flashloans.output")}</div>
           <div className="flex justify-between text-xl">
             <div className="flex items-center">
               <FurucomboTokenImage token={token} />
@@ -35,7 +35,7 @@ const FurucomboClaimOutput = ({
             <div>
               <div>
                 <div className="flex justify-between text-xs text-custom-grey-1 pt-3">
-                  <div>{t("furucombo.combo.retroactiveRewards")}</div>
+                  <div>{t("flashloans.combo.retroactiveRewards")}</div>
                   <div>
                     <span className="text-white pr-1">{tokenBalance}</span>
                     {token}
@@ -45,7 +45,7 @@ const FurucomboClaimOutput = ({
 
               <div>
                 <div className="flex justify-between text-xs text-custom-grey-1 pt-1">
-                  <div>{t("furucombo.combo.stakingComboRewards")}</div>
+                  <div>{t("flashloans.combo.stakingComboRewards")}</div>
                   <div>
                     <span className="text-white pr-1">{tokenBalance}</span>
                     {token}
@@ -55,7 +55,7 @@ const FurucomboClaimOutput = ({
 
               <div>
                 <div className="flex justify-between text-xs text-custom-grey-1 pt-1">
-                  <div>{t("furucombo.combo.stakingUniV2Rewards")}</div>
+                  <div>{t("flashloans.combo.stakingUniV2Rewards")}</div>
                   <div>
                     <span className="text-white pr-1">{tokenBalance}</span>
                     {token}
@@ -65,7 +65,7 @@ const FurucomboClaimOutput = ({
 
               <div>
                 <div className="flex justify-between text-xs text-custom-grey-1 pt-1">
-                  <div>{t("furucombo.combo.usageRewards")}</div>
+                  <div>{t("flashloans.combo.usageRewards")}</div>
                   <div>
                     <span className="text-white pr-1">{tokenBalance}</span>
                     {token}
@@ -89,7 +89,7 @@ const FurucomboClaimOutput = ({
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
       >
-        {t("furucombo.set")}
+        {t("flashloans.set")}
       </button>
     </div>
   );

@@ -25,7 +25,7 @@ const FurucomboBridge = ({
     <div>
       <div className="mt-1 px-2">
         <div className="px-3">
-          <div className="text-custom-grey-1 mt-4">{t("furucombo.input")}</div>
+          <div className="text-custom-grey-1 mt-4">{t("flashloans.input")}</div>
           <div className="flex justify-between">
             <SelectDropdown
               selectedOption={selectedOption}
@@ -42,7 +42,7 @@ const FurucomboBridge = ({
           </div>
 
           <div className="text-custom-grey-1 mt-4">
-            {t("furucombo.network")}
+            {t("flashloans.network")}
           </div>
           <div className="flex justify-between">{network}</div>
         </div>
@@ -61,7 +61,7 @@ const FurucomboBridge = ({
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
       >
-        {t("furucombo.set")}
+        {t("flashloans.set")}
       </button>
     </div>
   );

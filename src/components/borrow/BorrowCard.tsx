@@ -32,14 +32,13 @@ const BorrowCard = ({
   setCollateralAmount,
   setMainAmount,
 }: Props) => {
+  const { t } = useTranslation();
   const useContract = borrowHooks();
 
   const [action, setAction] = useState(ACTIONS.BORROW);
 
   const { inProgress, assetBalance, depositedCollateral, borrow, status } =
     useContract();
-
-  const { t } = useTranslation();
 
   return (
     <div className="w-full md:basis-1/2 md:bg-custom-grey-4/50 rounded-[30px]">
@@ -65,7 +64,7 @@ const BorrowCard = ({
             </div>
             <div>
               {t("borrow.borrowAssets.oracle")}:
-              <span className="text-white ml-0.5">Chainlink</span>
+              <span className="text-white ml-0.5">{t("borrow.chainlink")}</span>
             </div>
           </div>
 
@@ -183,7 +182,7 @@ const BorrowCard = ({
           isLoading={inProgress}
           screenReaderText={status}
         >
-          {t("approve")}
+          {t("borrow.approve")}
         </Button>
       </div>
     </div>
