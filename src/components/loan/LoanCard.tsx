@@ -39,7 +39,7 @@ const LoanCard = ({
   const [amount, setAmount] = useState("");
 
   return (
-    <div className="w-full p-4 bg-custom-grey-3 rounded-[20px] border-2 hover:border-custom-purple border-zinc-700">
+    <div className="w-full p-4 bg-custom-grey-3 rounded-[20px] border-2 hover:border-custom-purple border-zinc-700 flex flex-col justify-between">
       <div className="flex justify-between items-center w-full">
         <div className="font-bebas-neue text-2xl">
           {t(isCollateral ? "loan.collateral" : "loan.asset")}:
@@ -66,8 +66,9 @@ const LoanCard = ({
         </div>
       </div>
 
-      <div className="my-10">
+      <div className="mt-10">
         <Input
+          customClasses="mb-10"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           type="number"
@@ -85,16 +86,16 @@ const LoanCard = ({
             amount: assetBalance || 0,
           })}
         />
-      </div>
 
-      <Button
-        customClasses="w-full"
-        disabled={isDisabled || isDepositDisabled}
-        onClick={() => onDeposit({ amount: amount ? parseFloat(amount) : 0 })}
-        buttonColor="blue"
-      >
-        {t(isCollateral ? "loan.lend" : "loan.deposit")}
-      </Button>
+        <Button
+          customClasses="w-full"
+          disabled={isDisabled || isDepositDisabled}
+          onClick={() => onDeposit({ amount: amount ? parseFloat(amount) : 0 })}
+          buttonColor="blue"
+        >
+          {t(isCollateral ? "loan.lend" : "loan.deposit")}
+        </Button>
+      </div>
     </div>
   );
 };

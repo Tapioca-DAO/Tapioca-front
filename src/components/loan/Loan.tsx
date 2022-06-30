@@ -46,7 +46,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
     <div className="md:m-8 md:flex justify-center">
       <div className="w-full md:basis-3/4 md:bg-custom-grey-4/50 rounded-[30px] mr-4">
         <LeadTitle
-          title={t("loan.loan", { main })}
+          title={t("loan.loanMain", { main })}
           customClasses="flex items-center justify-between"
         >
           <div className="flex items-center">

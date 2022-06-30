@@ -85,7 +85,8 @@
     }
   },
   "loan": {
-    "loan": "Loan {{main}}",
+    "loan": "Loan",
+    "loanMain": "Loan {{main}}",
     "market": "Market",
     "loanMarket": "Loan Market",
     "search": "Search by token or pair",
