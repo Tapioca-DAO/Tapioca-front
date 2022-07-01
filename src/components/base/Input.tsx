@@ -1,7 +1,6 @@
 import React from "react";
 
-const BASE_CLASS =
-  "flex items-center border-4 rounded-xl bg-grey-800 w-full";
+const BASE_CLASS = "flex items-center border-4 rounded-xl bg-grey-800 w-full";
 const COLOR_STYLES = {
   pink: "border-violet-300",
   purple: "border-purple-300",

@@ -9,6 +9,7 @@ import formatAddress from "@/utils/formatAddress";
 import { WalletContext } from "@/providers/WalletContext";
 import { NavLink, useLocation } from "react-router-dom";
 import Logo from "@/images/logo.png";
+import Button from "@/components/base/Button";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -93,12 +94,9 @@ const Header = () => {
             />
           </div>
         ) : (
-          <button
-            className="font-bebas-neue rounded-lg	border-4 border-green-300 md:text-2xl px-3"
-            onClick={connectWallet}
-          >
+          <Button buttonColor="green" buttonSize="2xl" onClick={connectWallet}>
             {t("header.connectWallet")}
-          </button>
+          </Button>
         )}
 
         <Menu className="md:ml-4 ml-1" />
