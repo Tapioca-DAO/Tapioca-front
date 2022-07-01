@@ -21,7 +21,7 @@ const Header = () => {
 
   const parsedBalance = balance ? parseFloat(balance).toFixed(3) : "0";
 
-  const titleHeader = <img src={Logo} className="h-fit" width={123} />;
+  const titleHeader = <img src={Logo} className="h-8" />;
 
   const headerItems = (
     <>
