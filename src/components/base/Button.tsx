@@ -6,10 +6,10 @@ const BUTTON_BASE_CLASS =
   "font-bebas-neue rounded-lg	border-4 text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed";
 
 const BUTTON_COLOR_STYLES = {
-  purple: "border-custom-purple",
-  green: "border-custom-green",
-  blue: "border-custom-blue",
-  pink: "border-custom-pink-1",
+  purple: "border-purple-300",
+  green: "border-green-300",
+  blue: "border-blue-300",
+  pink: "border-violet-300",
 };
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {

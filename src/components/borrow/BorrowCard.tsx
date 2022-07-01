@@ -41,7 +41,7 @@ const BorrowCard = ({
     useContract();
 
   return (
-    <div className="w-full md:basis-1/2 md:bg-custom-grey-4/50 rounded-[30px]">
+    <div className="w-full md:basis-1/2 md:bg-grey-950 rounded-[30px]">
       <div className="px-3 md:p-8 md:pb-2">
         <div className="hidden md:flex uppercase text-5xl font-bebas-neue leading-10">
           {t("borrow.borrowAssets.borrowToken", { token: main })}
@@ -76,18 +76,18 @@ const BorrowCard = ({
         </div>
       </div>
 
-      <div className="md:border-t-4 border-custom-green md:p-8 p-4">
+      <div className="md:border-t-4 border-green-300 md:p-8 p-4">
         <div className="flex justify-between">
           <div className="basis-2/5">
             <div> {t("borrow.borrowAssets.collateral")}</div>
-            <div className="text-lg md:text-3xl font-bold text-custom-green">
+            <div className="text-lg md:text-3xl font-bold text-green-300">
               {collateralAmount || 0} {collateral}
             </div>
             <div className="text-xs md:text-sm text-zinc-400">$0,00</div>
           </div>
           <div className="basis-2/5">
             <div>{t("borrow.borrowAssets.borrowed")}</div>
-            <div className="text-lg md:text-3xl font-bold text-custom-pink-2">
+            <div className="text-lg md:text-3xl font-bold text-pink-300">
               {mainAmount || 0} {main}
             </div>
             <div className="text-xs md:text-sm text-zinc-400">$0,00</div>
@@ -98,14 +98,14 @@ const BorrowCard = ({
           </div>
         </div>
 
-        <div className="my-6 flex bg-custom-blue items-center rounded-lg p-1">
+        <div className="my-6 flex bg-blue-300 items-center rounded-lg p-1">
           {Object.keys(ACTIONS).map((key: string) => (
             <button
               key={key}
               onClick={() => setAction(ACTIONS[key])}
               className={[
                 "flex items-center justify-center rounded-lg font-bebas-neue text-xl md:text-4xl basis-1/2 leading-20 pt-1",
-                action === ACTIONS[key] ? "bg-custom-purple" : "",
+                action === ACTIONS[key] ? "bg-purple-300" : "",
               ].join(" ")}
             >
               {ACTIONS[key]}

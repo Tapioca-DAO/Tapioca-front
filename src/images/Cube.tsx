@@ -38,7 +38,7 @@ const Cube = ({ isActive, onClick, activeColorFrom, activeColorTo }: Props) => {
 
       <path
         className={
-          isActive ? (activeColorFrom ? "" : "fill-custom-grey-3") : color
+          isActive ? (activeColorFrom ? "" : "fill-grey-900") : color
         }
         style={activeStyles}
         d="M254.639 503.599 32.773 392.665V119.599l221.866 110.933z"
@@ -54,7 +54,7 @@ const Cube = ({ isActive, onClick, activeColorFrom, activeColorTo }: Props) => {
       />
       <path
         className={
-          isActive ? (activeColorFrom ? "" : "fill-custom-grey-3") : color
+          isActive ? (activeColorFrom ? "" : "fill-grey-900") : color
         }
         style={activeStyles}
         d="M32.773 119.599 246.106 8.665l230.4 110.934-221.867 110.933z"

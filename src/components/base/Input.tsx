@@ -1,12 +1,12 @@
 import React from "react";
 
 const BASE_CLASS =
-  "flex items-center border-4 rounded-xl bg-custom-grey-3 w-full";
+  "flex items-center border-4 rounded-xl bg-grey-800 w-full";
 const COLOR_STYLES = {
-  pink: "border-custom-pink-1",
-  purple: "border-custom-purple",
-  green: "border-custom-green",
-  blue: "border-custom-blue",
+  pink: "border-violet-300",
+  purple: "border-purple-300",
+  green: "border-green-300",
+  blue: "border-blue-300",
 };
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {

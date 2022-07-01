@@ -27,9 +27,9 @@ const BorrowFooter = ({
       <div className="flex items-center">
         <div className="md:text-2xl text-xl">
           <Trans i18nKey="borrow.currentSelection">
-            <span className="text-custom-green" />
+            <span className="text-green-300" />
 
-            <span className="font-bebas-neue text-custom-pink-1" />
+            <span className="font-bebas-neue text-violet-300" />
             {{
               main: mainToken,
               collateral,
@@ -45,7 +45,7 @@ const BorrowFooter = ({
           onClick={() =>
             navigate(`/borrow?main=${mainToken}&collateral=${collateral}`)
           }
-          customClasses="bg-custom-grey-3 md:text-2xl py-0.5 md:w-72 w-full md:mr-2 my-4"
+          customClasses="bg-grey-900 md:text-2xl py-0.5 md:w-72 w-full md:mr-2 my-4"
         >
           {t("borrow.continue")}
         </Button>

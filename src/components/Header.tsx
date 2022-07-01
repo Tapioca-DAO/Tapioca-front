@@ -45,7 +45,7 @@ const Header = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `px-1 ${isActive ? "text-custom-blue" : ""}`
+              `px-1 ${isActive ? "text-blue-300" : ""}`
             }
           >
             {t("header.links.borrow")}
@@ -53,7 +53,7 @@ const Header = () => {
           <NavLink
             to="/borrow-test"
             className={({ isActive }) =>
-              `px-1 ${isActive ? "text-custom-blue" : ""}`
+              `px-1 ${isActive ? "text-blue-300" : ""}`
             }
           >
             {t("header.links.borrowTest")}
@@ -61,7 +61,7 @@ const Header = () => {
           <NavLink
             to="/flashloans"
             className={({ isActive }) =>
-              `px-1 ${isActive ? "text-custom-blue" : ""}`
+              `px-1 ${isActive ? "text-blue-300" : ""}`
             }
           >
             {t("header.links.flashloans")}
@@ -69,7 +69,7 @@ const Header = () => {
           <NavLink
             to="/loan"
             className={({ isActive }) =>
-              `px-1 ${isActive ? "text-custom-blue" : ""}`
+              `px-1 ${isActive ? "text-blue-300" : ""}`
             }
           >
             {t("header.links.loan")}
@@ -94,7 +94,7 @@ const Header = () => {
           </div>
         ) : (
           <button
-            className="font-bebas-neue rounded-lg	border-4 border-custom-green md:text-2xl px-3"
+            className="font-bebas-neue rounded-lg	border-4 border-green-300 md:text-2xl px-3"
             onClick={connectWallet}
           >
             {t("header.connectWallet")}

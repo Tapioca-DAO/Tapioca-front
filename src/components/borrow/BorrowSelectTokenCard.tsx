@@ -19,7 +19,7 @@ const BorrowSelectTokenCard = ({
   const index = tokenList.findIndex((item) => item === selected);
 
   return (
-    <div className="w-full rounded-lg	border-4 border-custom-blue flex items-center flex-col bg-custom-grey-3 md:pt-14 ms:px-6 ms:pb-3 p-1">
+    <div className="w-full rounded-lg	border-4 border-blue-300 flex items-center flex-col bg-grey-900 md:pt-14 ms:px-6 ms:pb-3 p-1">
       <div className="flex items-center">
         <button
           onClick={() => {
@@ -46,7 +46,7 @@ const BorrowSelectTokenCard = ({
         </button>
       </div>
 
-      <div className="md:text-5xl text-2xl font-bebas-neue text-custom-pink-1">
+      <div className="md:text-5xl text-2xl font-bebas-neue text-violet-300">
         {selected}
       </div>
 

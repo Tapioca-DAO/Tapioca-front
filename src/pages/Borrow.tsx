@@ -36,7 +36,7 @@ const Borrow = () => {
           selected={mainToken}
           selectToken={(token: string) => setMainToken(token)}
         />
-        <div className="md:text-7xl text-3xl font-bebas-neue text-custom-blue text-center md:mx-10">
+        <div className="md:text-7xl text-3xl font-bebas-neue text-blue-300 text-center md:mx-10">
           VS
         </div>
         <BorrowSelectTokenCard

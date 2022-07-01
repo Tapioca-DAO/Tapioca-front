@@ -1,7 +1,7 @@
 const TITLE_CLASS =
   "uppercase text-2xl md:text-5xl font-bebas-neue md:leading-10";
 
-const BORDER_CLASS = "border-b-4 border-custom-green";
+const BORDER_CLASS = "border-b-4 border-green-300";
 
 const SPACE_CLASS = "p-3 md:p-8 md:pb-4";
 

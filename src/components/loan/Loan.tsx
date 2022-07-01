@@ -44,7 +44,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
 
   return (
     <div className="md:m-8 md:flex justify-center">
-      <div className="w-full md:basis-3/4 md:bg-custom-grey-4/50 rounded-[30px] mr-4">
+      <div className="w-full md:basis-3/4 md:bg-grey-950 rounded-[30px] mr-4">
         <LeadTitle
           title={t("loan.loanMain", { main })}
           customClasses="flex items-center justify-between"
@@ -99,7 +99,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
         </div>
       </div>
 
-      <div className="basis-1/4 md:bg-custom-grey-4/50 md:rounded-[30px] flex flex-col justify-between">
+      <div className="basis-1/4 md:bg-grey-950 md:rounded-[30px] flex flex-col justify-between">
         <div>
           <LeadTitle title={t("loan.market")} />
 

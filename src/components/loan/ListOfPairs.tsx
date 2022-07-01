@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 const HEADER_BASE_STYLES =
   "p-2 w-1/6 text-center hidden md:flex flex-col justify-center";
 const MARKET_STYLES =
-  "flex items-center justify-between p-2 md:w-24 border-b-2 border-custom-green md:border-0";
+  "flex items-center justify-between p-2 md:w-24 border-b-2 border-green-300 md:border-0";
 
 const ListOfPairs = () => {
   const { t } = useTranslation();
@@ -30,7 +30,7 @@ const ListOfPairs = () => {
 
   return (
     <div>
-      <div className="flex md:mt-14 mt-2 text-center border-b-4 border-custom-green">
+      <div className="flex md:mt-14 mt-2 text-center border-b-4 border-green-300">
         <div className="px-2 md:text-5xl text-2xl font-bebas-neue mx-1">
           {t("loan.loanMarket")}
         </div>
@@ -62,8 +62,8 @@ const ListOfPairs = () => {
             <div
               key={`${token}-${collateral}-${index}`}
               className={[
-                "bg-custom-grey-4/50 mx-3 mb-3 border-4 border-custom-pink-1 rounded-lg cursor-pointer",
-                "md:pointer-events-auto md:flex md:hover:bg-custom-grey-4/80 md:p-2",
+                "bg-grey-950 mx-3 mb-3 border-4 border-violet-300 rounded-lg cursor-pointer",
+                "md:pointer-events-auto md:flex md:hover:bg-grey-950/20 md:p-2",
               ].join(" ")}
               onClick={() =>
                 navigate(`/loan?main=${token}&collateral=${collateral}`)

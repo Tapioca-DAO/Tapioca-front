@@ -64,7 +64,7 @@ const FurucomboMultipleInputs = ({
     <div>
       <div className="my-1 px-5">
         <div>
-          <div className="text-custom-grey-1">{t("flashloans.input")}</div>
+          <div className="text-grey-200">{t("flashloans.input")}</div>
           {currentOptions.map(({ token, swapValue }) => (
             <div className="flex items-center justify-between mb-3" key={token}>
               <div className="flex items-center">
@@ -95,7 +95,7 @@ const FurucomboMultipleInputs = ({
         </div>
 
         <div className="mt-4">
-          <div className="text-custom-grey-1">
+          <div className="text-grey-200">
             {t("flashloans.outputEstimate")}
           </div>
           <div className="flex justify-between">
@@ -123,7 +123,7 @@ const FurucomboMultipleInputs = ({
             outputsOptions: selectedOptions,
           })
         }
-        className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
+        className="mt-2 w-full text-center bg-grey-600 p-2 rounded-b disabled:text-zinc-600 disabled:bg-grey-800"
       >
         {t("flashloans.set")}
       </button>

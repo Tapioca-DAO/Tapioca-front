@@ -23,7 +23,7 @@ const FurucomboSelectionCard = ({
   );
 
   return (
-    <div className="bg-custom-grey-4 w-full rounded-lg mb-2">
+    <div className="bg-grey-950 w-full rounded-lg mb-2">
       <div className="flex items-center p-2">
         <div className="basis-1/3">
           <button
@@ -47,7 +47,7 @@ const FurucomboSelectionCard = ({
           }}
           className="cursor-pointer w-36 p-[1px] rounded relative"
         >
-          <div className="rounded flex justify-center py-0.5 px-2 bg-custom-grey-3 text-xs">
+          <div className="rounded flex justify-center py-0.5 px-2 bg-grey-800 text-xs">
             {currentSelectedFeature?.title}
           </div>
         </div>

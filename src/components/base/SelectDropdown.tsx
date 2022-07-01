@@ -69,7 +69,7 @@ const SelectDropdown = ({
     "overflow-y-auto",
     "max-h-40",
     isOpen ? "opacity-1 scale-x-1 scale-y-1" : "opacity-0 scale-x-1 scale-y-0",
-    flexWidth ? "rounded bg-custom-grey-1 w-full" : "w-44",
+    flexWidth ? "rounded bg-grey-200 w-full" : "w-44",
   ]
     .filter(Boolean)
     .join(" ");
@@ -79,7 +79,7 @@ const SelectDropdown = ({
     "flex",
     "items-center",
     "justify-between",
-    flexWidth ? "rounded bg-custom-grey-1 w-full px-2 p-1" : "",
+    flexWidth ? "rounded bg-grey-200 w-full px-2 p-1" : "",
   ]
     .filter(Boolean)
     .join(" ");

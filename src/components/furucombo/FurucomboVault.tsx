@@ -146,7 +146,7 @@ const FurucomboVault = ({
     <div>
       <div className="mt-1 px-2">
         <div className="px-3">
-          <div className="text-custom-grey-1">{t("flashloans.vault")}</div>
+          <div className="text-grey-200">{t("flashloans.vault")}</div>
           <div className="flex items-center">
             <div className="mr-3 text-2xl">#</div>
             <input
@@ -166,7 +166,7 @@ const FurucomboVault = ({
             </div>
           ) : null}
 
-          <div className="text-custom-grey-1 mt-4">
+          <div className="text-grey-200 mt-4">
             {t(
               transactionType === "input"
                 ? "furucombo.input"
@@ -204,7 +204,7 @@ const FurucomboVault = ({
             vault,
           })
         }
-        className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
+        className="mt-2 w-full text-center bg-grey-600 p-2 rounded-b disabled:text-zinc-600 disabled:bg-grey-800"
       >
         {t("flashloans.set")}
       </button>

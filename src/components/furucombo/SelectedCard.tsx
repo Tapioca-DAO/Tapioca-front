@@ -44,7 +44,7 @@ const SelectedCard = ({
         />
       </div>
       <div className="md:basis-1/2 w-full mr-2">
-        <div className="p-2 bg-custom-grey-3 w-full rounded-lg mb-2" key={id}>
+        <div className="p-2 bg-grey-900 w-full rounded-lg mb-2" key={id}>
           <div className="flex items-center justify-between">
             <div>
               <div

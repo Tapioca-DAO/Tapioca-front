@@ -39,11 +39,11 @@ const LoanCard = ({
   const [amount, setAmount] = useState("");
 
   return (
-    <div className="w-full p-4 bg-custom-grey-3 rounded-[20px] border-2 hover:border-custom-purple border-zinc-700 flex flex-col justify-between">
+    <div className="w-full p-4 bg-grey-900 rounded-[20px] border-2 hover:border-purple-300 border-zinc-700 flex flex-col justify-between">
       <div className="flex justify-between items-center w-full">
         <div className="font-bebas-neue text-2xl">
           {t(isCollateral ? "loan.collateral" : "loan.asset")}:
-          <span className="text-custom-pink-1"> {selectedAsset}</span>
+          <span className="text-violet-300"> {selectedAsset}</span>
         </div>
 
         <div className="flex items-center">

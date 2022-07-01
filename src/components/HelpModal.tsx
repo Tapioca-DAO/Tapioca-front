@@ -46,7 +46,7 @@ const HelpModal = ({ video }: Props) => {
       <div className="fixed right-6 bottom-6">
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center font-bebas-neue bg-custom-purple p-2 px-4 rounded-full"
+          className="flex items-center font-bebas-neue bg-purple-300 p-2 px-4 rounded-full"
         >
           {t("base.needHelp")}
         </button>
@@ -64,9 +64,9 @@ const HelpModal = ({ video }: Props) => {
           <div className={className}>
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute text-custom-purple right-2 top-2"
+              className="absolute text-purple-300 right-2 top-2"
             >
-              <Close className="fill-custom-purple" />
+              <Close className="fill-purple-300" />
             </button>
             <ReactPlayer
               onEnded={() => setIsOpen(false)}

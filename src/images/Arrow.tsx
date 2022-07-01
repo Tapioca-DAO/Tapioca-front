@@ -1,6 +1,6 @@
 const Arrow = ({
   direction = "right",
-  className = "lg:w-20 md:w-14 lg:h-20 md:h-14 w-10 h-10 fill-custom-blue",
+  className = "lg:w-20 md:w-14 lg:h-20 md:h-14 w-10 h-10 fill-blue-300",
 }) => (
   <svg
     viewBox="0 0 480.554 480.553"

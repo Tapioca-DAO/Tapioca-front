@@ -23,7 +23,7 @@ const FurucomboInputToken = ({
   return (
     <div>
       <div className="my-1 px-5">
-        <div className="text-custom-grey-1">{t("flashloans.input")}</div>
+        <div className="text-grey-200">{t("flashloans.input")}</div>
         <div className="flex justify-between">
           <SelectDropdown
             selectedOption={selectedOption}
@@ -50,7 +50,7 @@ const FurucomboInputToken = ({
             token: selectedOption,
           })
         }
-        className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
+        className="mt-2 w-full text-center bg-grey-600 p-2 rounded-b disabled:text-zinc-600 disabled:bg-grey-800"
       >
         {t("flashloans.set")}
       </button>

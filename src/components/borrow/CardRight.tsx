@@ -71,7 +71,7 @@ const CardRight = ({
         ).toFixed(3)} ${main}`;
 
   return (
-    <div className="basis-1/4 md:bg-custom-grey-4/50 md:rounded-[30px] py-10 md:p-4 md:px-8">
+    <div className="basis-1/4 md:bg-grey-950 md:rounded-[30px] py-10 md:p-4 md:px-8">
       <div>
         <Bubbles className="px-8" />
       </div>
@@ -106,13 +106,13 @@ const CardRight = ({
         <div className="flex justify-between mt-3 gap-3">
           <Button
             buttonColor="pink"
-            customClasses="w-full text-md py-0.5 px-0 bg-custom-grey-3"
+            customClasses="w-full text-md py-0.5 px-0 bg-grey-800"
           >
             {t("borrow.borrowAssets.accrue")}
           </Button>
           <Button
             buttonColor="pink"
-            customClasses="w-full text-md py-0.5 px-0 bg-custom-grey-3"
+            customClasses="w-full text-md py-0.5 px-0 bg-grey-800"
           >
             {t("borrow.borrowAssets.upodatePrice")}
           </Button>
@@ -131,12 +131,12 @@ const CardRight = ({
         <div className="text-zinc-300 mt-6">
           {t("borrow.borrowAssets.liquidationPrice")}
         </div>
-        <div className="text-xs text-custom-blue">{liquidationPrice}</div>
+        <div className="text-xs text-blue-300">{liquidationPrice}</div>
 
         <div className="text-zinc-300 mt-3">
           {t("borrow.borrowAssets.positionHealth")}
         </div>
-        <div className="text-xs flex text-custom-blue">
+        <div className="text-xs flex text-blue-300">
           0%
           <SmallArrow />
           {positionHealth}%
@@ -144,7 +144,7 @@ const CardRight = ({
 
         <Button
           buttonColor="pink"
-          customClasses="w-full text-md py-0.5 px-0 bg-custom-grey-3 my-3"
+          customClasses="w-full text-md py-0.5 px-0 bg-grey-900 my-3"
         >
           {t("borrow.borrowAssets.rebalance")}
         </Button>
