@@ -38,7 +38,7 @@ const FurucomboPool = ({
     <div>
       <div className="mt-1 px-2">
         <div className="px-3">
-          <div className="text-grey-200">{t(`furucombo.pool`)}</div>
+          <div className="text-grey-200">{t("flashloans.pool")}</div>
           <div className="flex items-center w-full">
             <div className="mr-2">
               <FurucomboTokenImage
@@ -60,9 +60,7 @@ const FurucomboPool = ({
             </div>
           </div>
 
-          <div className="text-grey-200 mt-4">
-            {t(`furucombo.${poolType}`)}
-          </div>
+          <div className="text-grey-200 mt-4">{t("flashloans.${poolType}")}</div>
           <div>
             {currentToken && (
               <div>

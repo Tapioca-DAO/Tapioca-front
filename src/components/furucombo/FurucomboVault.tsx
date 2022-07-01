@@ -169,8 +169,8 @@ const FurucomboVault = ({
           <div className="text-grey-200 mt-4">
             {t(
               transactionType === "input"
-                ? "furucombo.input"
-                : "furucombo.output"
+                ? "flashloans.input"
+                : "flashloans.output"
             )}
           </div>
 
