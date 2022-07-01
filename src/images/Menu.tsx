@@ -1,14 +1,16 @@
 interface Props {
   className?: string;
+  onClick?: () => void;
 }
 
-const Menu = ({ className }: Props) => (
+const Menu = ({ className, onClick }: Props) => (
   <svg
     viewBox="0 0 1000 1000"
     xmlSpace="preserve"
     height="52px"
     width="60px"
     className={className}
+    onClick={onClick}
   >
     <path
       d="M875.5 447h-730c-29.42 0-53.5-24.07-53.5-53.5 0-29.42 24.07-53.5 53.5-53.5h730c29.42 0 53.5 24.07 53.5 53.5S904.93 447 875.5 447z"
