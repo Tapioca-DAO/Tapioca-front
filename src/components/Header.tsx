@@ -7,9 +7,10 @@ import Menu from "@/images/Menu";
 import GroupButton from "@/components/base/GroupButton";
 import formatAddress from "@/utils/formatAddress";
 import { WalletContext } from "@/providers/WalletContext";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "@/images/logo.png";
 import Button from "@/components/base/Button";
+import { SmallClose } from "@/images/Close";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -17,8 +18,6 @@ const Header = () => {
 
   const { wallet, connectWallet } = useContext(WalletContext);
   const { address, balance } = wallet;
-  const { pathname } = useLocation();
-
   const parsedBalance = balance ? parseFloat(balance).toFixed(3) : "0";
 
   const titleHeader = <img src={Logo} className="h-8" />;
@@ -80,19 +79,7 @@ const Header = () => {
                 <div className="flex items-center justify-between mb-7">
                   {titleHeader}
                   <div>
-                    <svg
-                      viewBox="0 0 10 10"
-                      className="w-2.5 h-2.5 cursor-pointer"
-                      aria-hidden="true"
-                      onClick={() => setOpen(false)}
-                    >
-                      <path
-                        d="M0 0L10 10M10 0L0 10"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                      ></path>
-                    </svg>
+                    <SmallClose onClick={() => setOpen(false)} />
                   </div>
                 </div>
                 <ul className="flex flex-col font-bebas-neue text-2xl px-1">

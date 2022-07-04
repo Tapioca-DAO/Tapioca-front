@@ -1,17 +1,11 @@
 import { useTranslation } from "react-i18next";
 import GetToken from "@/images/GetToken";
-import { useState } from "react";
 import Input from "@/components/base/Input";
 import MaxButton from "@/images/Max-button.png";
 import WalletButton from "@/images/Wallet-button.png";
 import Button from "@/components/base/Button";
 import BubbleGreen from "@/images/BubbleGreen";
 import { borrowHooks } from "@/utils/borrowHooks";
-
-const ACTIONS = {
-  BORROW: "borrow",
-  REPAY: "repay",
-} as { [key: string]: string };
 
 interface Props {
   main: string;
@@ -34,8 +28,6 @@ const BorrowCard = ({
 }: Props) => {
   const { t } = useTranslation();
   const useContract = borrowHooks();
-
-  const [action, setAction] = useState(ACTIONS.BORROW);
 
   const { inProgress, assetBalance, depositedCollateral, borrow, status } =
     useContract();
@@ -98,22 +90,7 @@ const BorrowCard = ({
           </div>
         </div>
 
-        <div className="my-6 flex bg-blue-300 items-center rounded-lg p-1">
-          {Object.keys(ACTIONS).map((key: string) => (
-            <button
-              key={key}
-              onClick={() => setAction(ACTIONS[key])}
-              className={[
-                "flex items-center justify-center rounded-lg font-bebas-neue text-xl md:text-4xl basis-1/2 leading-20 pt-1",
-                action === ACTIONS[key] ? "bg-purple-300" : "",
-              ].join(" ")}
-            >
-              {ACTIONS[key]}
-            </button>
-          ))}
-        </div>
-
-        <div className="uppercase text-xl md:text-5xl font-bebas-neue md:leading-10 md:mb-4">
+        <div className="uppercase text-xl md:text-5xl font-bebas-neue md:leading-10 md:mb-4 mt-12">
           {t("borrow.borrowAssets.borrowToken", { token: main })}
         </div>
 
