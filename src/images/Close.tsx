@@ -15,4 +15,24 @@ const Close = ({ onClick, className = "fill-white cursor-pointer" }: Props) => (
   </svg>
 );
 
+export const SmallClose = ({
+  onClick,
+  className = "w-2.5 h-2.5 fill-white cursor-pointer",
+}: Props) => {
+  return (
+    <svg
+      viewBox="0 0 10 10"
+      className={className}
+      aria-hidden="true"
+      onClick={onClick}
+    >
+      <path
+        d="M0 0L10 10M10 0L0 10"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+      ></path>
+    </svg>
+  );
+};
 export default Close;

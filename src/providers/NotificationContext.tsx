@@ -5,6 +5,7 @@ import {
   useEffect,
   useMemo,
 } from "react";
+import { SmallClose } from "@/images/Close";
 
 interface NotificationProviderProps {
   children: ReactElement;
@@ -45,13 +46,9 @@ export const NotificationProvider = ({
     if (!visible || !message) return null;
     return (
       <div className="absolute z-[99999] top-3 left-3 max-w-md">
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 p-2 rounded flex items-center">
-          <div className="font-bold overflow-x-auto">
-            {message.split(";")[0]}
-          </div>
-          <button className="ml-4" onClick={clear}>
-            X
-          </button>
+        <div className="bg-red-500 shadow-xl shadow-red-600/60 rounded p-2 overflow-hidden flex justify-between items-center">
+          <p className="text-sm text-white pr-4">{message.split(";")[0]}</p>
+          <SmallClose onClick={clear} />
         </div>
       </div>
     );
