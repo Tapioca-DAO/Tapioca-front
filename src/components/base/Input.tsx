@@ -8,6 +8,11 @@ const COLOR_STYLES = {
   blue: "border-blue-300",
 };
 
+const INPUT_SIZE_STYLES = {
+  sm: "text-sm px-2 py-0.5",
+  md: "text-md py-1 px-2 md:py-2",
+};
+
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   customClasses?: string;
   containerCustomClasses?: string;
@@ -16,6 +21,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   subLabel?: string | JSX.Element;
   customRightItem?: string | JSX.Element;
   customLeftItem?: string | JSX.Element;
+  inputSize?: "sm" | "md";
 }
 
 const Input = ({
@@ -27,12 +33,14 @@ const Input = ({
   customRightItem,
   customLeftItem,
   type = "text",
+  inputSize = "md",
   ...htmlAttributes
 }: Props) => {
   const inputClassName = [
     customClasses ? customClasses : null,
     BASE_CLASS,
     COLOR_STYLES[color],
+    INPUT_SIZE_STYLES[inputSize],
   ]
     .filter(Boolean)
     .join(" ");
@@ -40,7 +48,7 @@ const Input = ({
   return (
     <div className={containerCustomClasses}>
       <div className="flex items-center justify-between pb-1">
-        {label && <div>{label}</div>}
+        {label && <div className="text-sm">{label}</div>}
         {subLabel && <div className="text-sm text-zinc-400">{subLabel}</div>}
       </div>
 
@@ -48,7 +56,7 @@ const Input = ({
         {customLeftItem}
         <input
           type={type}
-          className="w-full bg-transparent focus:outline-none py-1 px-2 md:py-2 text-lg"
+          className="w-full bg-transparent focus:outline-none text-lg"
           {...htmlAttributes}
         />
         {customRightItem}

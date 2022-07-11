@@ -39,15 +39,16 @@ const LoanCard = ({
   const [amount, setAmount] = useState("");
 
   return (
-    <div className="w-full p-4 bg-grey-900 rounded-[20px] border-2 hover:border-purple-300 border-zinc-700 flex flex-col justify-between">
+    <>
       <div className="flex justify-between items-center w-full">
         <div className="font-bebas-neue text-2xl">
           {t(isCollateral ? "loan.collateral" : "loan.asset")}:
           <span className="text-violet-300"> {selectedAsset}</span>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <Button
+            buttonSize="sm"
             disabled={isDisabled || isApproving || isApproved}
             isLoading={isApproving}
             onClick={onApprove}
@@ -56,7 +57,7 @@ const LoanCard = ({
           </Button>
 
           <Button
-            customClasses="ml-2"
+            buttonSize="sm"
             onClick={mint}
             isLoading={isMinting}
             disabled={isDisabled || isMinting}
@@ -66,9 +67,10 @@ const LoanCard = ({
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-4 flex w-full justify-between items-end gap-2 md:gap-4">
         <Input
-          customClasses="mb-10"
+          inputSize="sm"
+          containerCustomClasses="w-full"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           type="number"
@@ -87,16 +89,21 @@ const LoanCard = ({
           })}
         />
 
-        <Button
-          customClasses="w-full"
-          disabled={isDisabled || isDepositDisabled}
-          onClick={() => onDeposit({ amount: amount ? parseFloat(amount) : 0 })}
-          buttonColor="blue"
-        >
-          {t(isCollateral ? "loan.lend" : "loan.deposit")}
-        </Button>
+        <div className="w-28">
+          <Button
+            customClasses="w-full"
+            buttonSize="lg"
+            disabled={isDisabled || isDepositDisabled}
+            onClick={() =>
+              onDeposit({ amount: amount ? parseFloat(amount) : 0 })
+            }
+            buttonColor="blue"
+          >
+            {t(isCollateral ? "loan.lend" : "loan.deposit")}
+          </Button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

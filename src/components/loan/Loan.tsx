@@ -43,8 +43,8 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
   );
 
   return (
-    <div className="md:m-8 md:flex justify-center">
-      <div className="w-full md:basis-3/4 md:bg-grey-950 rounded-[30px] mr-4">
+    <div className="my-8 mx-2 md:mx-8 md:flex justify-center gap-4">
+      <div className="basis-3/5 bg-grey-950 rounded-[30px] md:max-w-[550px] mb-6">
         <LeadTitle
           title={t("loan.loanMain", { main })}
           customClasses="flex items-center justify-between"
@@ -63,7 +63,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
           </div>
         </LeadTitle>
 
-        <div className="p-3 md:px-4 md:py-10 flex flex-col md:flex-row justify-center gap-2 md:gap-4">
+        <div className="p-4">
           <LoanCard
             selectedAsset={main}
             deposited={wethDeposited}
@@ -79,6 +79,8 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
             isMinting={isMintingWeth}
             isDisabled={isDisabled}
           ></LoanCard>
+
+          <div className="h-1 w-full border-b border-grey-500 pt-6 mb-6" />
 
           <LoanCard
             selectedAsset={collateral}
@@ -99,7 +101,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
         </div>
       </div>
 
-      <div className="basis-1/4 md:bg-grey-950 md:rounded-[30px] flex flex-col justify-between">
+      <div className="basis-2/5 md:max-w-[350px] bg-grey-950 rounded-[30px] flex flex-col justify-between mb-6">
         <div>
           <LeadTitle title={t("loan.market")} />
 
@@ -133,7 +135,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-4">
           <Bubbles className="w-40" />
         </div>
       </div>
