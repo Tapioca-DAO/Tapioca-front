@@ -101,7 +101,7 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
         </div>
       </div>
 
-      <div className="basis-2/5 md:max-w-[350px] bg-grey-950 rounded-[30px] flex flex-col justify-between mb-6">
+      <div className="basis-2/5 md:max-w-[350px] bg-grey-950 rounded-[30px] mb-6">
         <div>
           <LeadTitle title={t("loan.market")} />
 
@@ -133,10 +133,6 @@ const Loan = ({ main, collateral, isDisabled }: Props) => {
               <div className="text-zinc-400">{pair?.oracle}</div>
             </div>
           </div>
-        </div>
-
-        <div className="flex justify-center mb-4">
-          <Bubbles className="w-40" />
         </div>
       </div>
     </div>
