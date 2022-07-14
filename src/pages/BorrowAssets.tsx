@@ -5,7 +5,7 @@ import BorrowCard from "@/components/borrow/BorrowCard";
 import { WalletContext } from "@/providers/WalletContext";
 import { useContext, useState } from "react";
 import { getQuery } from "@/utils/getQuery";
-import { PAIR_LIST } from "@/utils/constants";
+import { BORROW_PAIR_LIST } from "@/utils/constants";
 
 const MAIN_QUERY = "main";
 const COLLATERAL_QUERY = "collateral";
@@ -38,7 +38,7 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   const isDisabled =
     disabled || metamaskNotAvailable || !isConnected || !wallet.address;
 
-  const pair = PAIR_LIST.find(
+  const pair = BORROW_PAIR_LIST.find(
     (item) => item.token === main && item.collateral === collateral
   );
 

@@ -1,58 +1,150 @@
-import { useEffect, useMemo, useState } from "react";
-import BorrowSelectTokenCard from "@/components/borrow/BorrowSelectTokenCard";
+import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 import BorrowTitle from "@/components/borrow/BorrowTitle";
-import { TOKENS_SYMBOLS, BORROW_TOKEN_LIST } from "@/utils/tokens";
-import BorrowFooter from "@/components/borrow/BorrowFooter";
+import Input from "@/components/base/Input";
+import Button from "@/components/base/Button";
+import SearchIcon from "@/images/SearchIcon";
+import GetToken from "@/images/GetToken";
+import BubbleGreen from "@/images/BubbleGreen";
+import formatter from "@/utils/dolarFormater";
+import { BORROW_PAIR_LIST } from "@/utils/constants";
+
+const HEADER_BASE_STYLES =
+  "p-2 w-1/6 text-center hidden md:flex flex-col justify-center";
+const MARKET_STYLES =
+  "flex items-center justify-between p-2 md:w-24 border-b-2 border-green-300 md:border-0";
 
 const Borrow = () => {
+  const { t } = useTranslation();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
-  const [mainToken, setMainToken] = useState(TOKENS_SYMBOLS.ETH);
-  const [collateral, setCollateral] = useState("");
-  const [noviceMode, setNoviceMode] = useState("no");
-
-  const collateralListOfTokens = useMemo(() => {
-    const { ETH, FRAX, BOBA, USDC, DAI } = TOKENS_SYMBOLS;
-
-    if (mainToken === USDC) return [ETH, DAI, BOBA, FRAX];
-    if (mainToken === DAI) return [ETH, USDC, BOBA];
-    if (mainToken === ETH) return [USDC, DAI, BOBA, FRAX];
-
-    return [];
-  }, [mainToken]);
-
-  useEffect(() => {
-    if (collateralListOfTokens[0]) {
-      setCollateral(collateralListOfTokens[0]);
-    }
-  }, [collateralListOfTokens]);
+  const filteredList = useMemo(() => {
+    return BORROW_PAIR_LIST.filter(
+      ({ token, collateral }) =>
+        token.toLowerCase().includes(search.toLowerCase()) ||
+        collateral.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [search, BORROW_PAIR_LIST]);
 
   return (
     <div>
       <BorrowTitle />
 
-      <div className="md:m-8 my-4 mx-3 md:flex items-center justify-between">
-        <BorrowSelectTokenCard
-          tokenList={BORROW_TOKEN_LIST.map(({ symbol }) => symbol)}
-          selected={mainToken}
-          selectToken={(token: string) => setMainToken(token)}
+      <div className="w-full mt-4">
+        <Input
+          customLeftItem={<SearchIcon />}
+          placeholder={t("borrow.search")}
+          customClasses="w-full px-2 mb-6"
+          color="purple"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="md:text-7xl text-3xl font-bebas-neue text-blue-300 text-center md:mx-10">
-          VS
+        <div className="hidden md:flex text-sm text-zinc-300 px-6 mb-1">
+          <div className={MARKET_STYLES}>{t("borrow.markets")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("borrow.asset")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("borrow.collateral")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("borrow.oracle")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("borrow.borrowed")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("borrow.available")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("borrow.apr")}</div>
         </div>
-        <BorrowSelectTokenCard
-          tokenList={collateralListOfTokens}
-          selected={collateral}
-          isCollateral
-          selectToken={(token: string) => setCollateral(token)}
-        />
-      </div>
+        {filteredList.map(
+          (
+            { token, collateral, apr, oracle, borrowed, available, tokenPrice },
+            index
+          ) => (
+            <div
+              key={`${token}-${collateral}-${index}`}
+              className={[
+                "bg-grey-950 mx-3 mb-3 border-4 border-violet-300 rounded-lg cursor-pointer",
+                "md:pointer-events-auto md:flex md:hover:bg-grey-950/20 md:p-2",
+              ].join(" ")}
+              onClick={() =>
+                navigate(`/borrow?main=${token}&collateral=${collateral}`)
+              }
+            >
+              <div className={MARKET_STYLES}>
+                <div className="flex items-center">
+                  <GetToken
+                    token={token}
+                    isSelected
+                    className="w-10 h-10 z-0 -mr-3"
+                  />
+                  <GetToken
+                    token={collateral}
+                    isSelected
+                    className="w-10 h-10 z-100"
+                  />
+                </div>
 
-      <BorrowFooter
-        mainToken={mainToken}
-        collateral={collateral}
-        setNoviceMode={setNoviceMode}
-        noviceMode={noviceMode}
-      />
+                <div className="flex md:hidden items-center gap-1 text-xl">
+                  <div>{token}</div>
+                  <BubbleGreen />
+                  <div>{collateral}</div>
+                </div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-xl">{token}</div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-xl">{collateral}</div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>{oracle}</div>
+
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-lg">{formatter.format(borrowed)}</div>
+                <div className="text-xs text-zinc-400">
+                  {parseFloat((borrowed / tokenPrice).toFixed(3))} {token}
+                </div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>
+                {formatter.format(available)}
+                <div className="text-xs text-zinc-400">
+                  {parseFloat((available / tokenPrice).toFixed(3))} {token}
+                </div>
+              </div>
+
+              <div className={HEADER_BASE_STYLES}>
+                <div className="text-lg">{apr}%</div>
+              </div>
+
+              <div className="md:hidden">
+                <div className="flex p-4 justify-between">
+                  <div>
+                    <div className="text-zinc-400">{t("borrow.apr")}</div>
+                    <div className="text-lg">{apr}%</div>
+                    <div className="text-zinc-400">{t("borrow.chainlink")}</div>
+                  </div>
+                  <div>
+                    <div className="text-zinc-400">{t("borrow.liquidity")}</div>
+                    <div className="text-lg">1,165,049 {token}</div>
+                    <div className="text-sm text-zinc-400">$1,165,281</div>
+                  </div>
+                </div>
+
+                <div className="py-3 px-4">
+                  <Button
+                    buttonColor="pink"
+                    customClasses="w-full"
+                    onClick={() =>
+                      navigate(`/borrow?main=${token}&collateral=${collateral}`)
+                    }
+                  >
+                    {t("borrow.borrow")}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 };

@@ -56,7 +56,10 @@ const Input = ({
         {customLeftItem}
         <input
           type={type}
-          className="w-full bg-transparent focus:outline-none text-lg"
+          className={[
+            "w-full bg-transparent focus:outline-none text-lg",
+            customLeftItem ? "ml-2" : "",
+          ].join(" ")}
           {...htmlAttributes}
         />
         {customRightItem}
