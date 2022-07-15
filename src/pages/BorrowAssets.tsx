@@ -11,11 +11,10 @@ const COLLATERAL_QUERY = "collateral";
 
 interface Props {
   main?: string | null;
-  collateral?: string | null;
   disabled?: boolean;
 }
 
-const BorrowAssets = ({ main, collateral, disabled }: Props) => {
+const BorrowAssets = ({ main, collateral }: Props) => {
   const location = useLocation();
 
   const { isConnected, wallet, metamaskNotAvailable } =
@@ -35,7 +34,10 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   const [mainAmount, setMainAmount] = useState("");
 
   const isDisabled =
-    disabled || metamaskNotAvailable || !isConnected || !wallet.address;
+    metamaskNotAvailable ||
+    !isConnected ||
+    !wallet.address ||
+    (main !== "WETH" && collateral !== "USDC");
 
   const pair = BORROW_PAIR_LIST.find(
     (item) => item.token === main && item.collateral === collateral
@@ -44,9 +46,9 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   return (
     <div className="my-8 mx-2 md:mx-8 md:flex justify-center gap-4">
       <BorrowCard
+        isDisabled={isDisabled}
         main={main}
         collateral={collateral}
-        isDisabled={isDisabled}
         collateralAmount={collateralAmount}
         mainAmount={mainAmount}
         setCollateralAmount={setCollateralAmount}

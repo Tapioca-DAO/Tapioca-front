@@ -5,6 +5,7 @@ import { borrowHooks } from "@/utils/borrowHooks";
 import LoadingSpinner from "@/components/base/LoadingSpinner";
 
 interface Props {
+  isDisabled: boolean;
   main: string;
   collateral: string;
   collateralAmount: string;
@@ -97,8 +98,8 @@ const BorrowCard = ({
   mainAmount,
   setCollateralAmount,
   setMainAmount,
+  isDisabled,
 }: Props) => {
-  const isDisabled = main !== "WETH" && collateral !== "USDC";
   const { t } = useTranslation();
   const useContract = borrowHooks();
 
