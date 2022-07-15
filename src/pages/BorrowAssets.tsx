@@ -34,7 +34,7 @@ const BorrowAssets = () => {
   );
 
   return (
-    <div className="my-8 mx-2 md:mx-8 md:flex justify-center gap-4">
+    <div className="mx-auto flex justify-center max-w-lg mt-12">
       <BorrowCard
         isDisabled={isDisabled}
         main={main}
@@ -43,14 +43,7 @@ const BorrowAssets = () => {
         mainAmount={mainAmount}
         setCollateralAmount={setCollateralAmount}
         setMainAmount={setMainAmount}
-        tokenPrice={pair?.tokenPrice}
-      />
-      <StrategyCard
-        pair={pair}
-        main={main}
-        collateral={collateral}
-        collateralAmount={collateralAmount}
-        mainAmount={mainAmount}
+        collateralPrice={pair?.collateralPrice}
       />
     </div>
   );

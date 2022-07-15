@@ -13,7 +13,7 @@ interface Props {
   mainAmount: string;
   setCollateralAmount: (amount: string) => void;
   setMainAmount: (amount: string) => void;
-  tokenPrice?: number;
+  collateralPrice?: number;
 }
 
 interface ItemProps {
@@ -101,7 +101,7 @@ const BorrowCard = ({
   setCollateralAmount,
   setMainAmount,
   isDisabled,
-  tokenPrice,
+  collateralPrice,
 }: Props) => {
   const { t } = useTranslation();
   const useContract = borrowHooks();
@@ -109,8 +109,8 @@ const BorrowCard = ({
   const { inProgress, assetBalance, borrow, status } = useContract();
 
   return (
-    <div className="w-full md:basis-1/2 md:bg-navy-300 rounded-[30px]">
-      <div className="text-4xl bg-navy-400 rounded-[30px] text-center m-4 mb-20">
+    <div className="w-full md:bg-navy-300 rounded-[30px] p-4">
+      <div className="text-4xl bg-navy-400 rounded-[30px] text-center mb-20">
         {t("borrow.borrow")}
       </div>
 
@@ -121,7 +121,7 @@ const BorrowCard = ({
         updateValue={(amount: string) => setCollateralAmount(amount)}
         token={collateral}
         disabled={inProgress}
-        price={formatterWithDecimal.format(tokenPrice || 0)}
+        price={formatterWithDecimal.format(collateralPrice || 0)}
       />
 
       <BorrowItem
