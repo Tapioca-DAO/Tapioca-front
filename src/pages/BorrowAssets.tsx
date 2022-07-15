@@ -9,24 +9,14 @@ import { BORROW_PAIR_LIST } from "@/utils/constants";
 const MAIN_QUERY = "main";
 const COLLATERAL_QUERY = "collateral";
 
-interface Props {
-  main?: string | null;
-  disabled?: boolean;
-}
-
-const BorrowAssets = ({ main, collateral }: Props) => {
+const BorrowAssets = () => {
   const location = useLocation();
 
   const { isConnected, wallet, metamaskNotAvailable } =
     useContext(WalletContext);
 
-  if (!main) {
-    main = getQuery(location.search, MAIN_QUERY);
-  }
-
-  if (!collateral) {
-    collateral = getQuery(location.search, COLLATERAL_QUERY);
-  }
+  const main = getQuery(location.search, MAIN_QUERY);
+  const collateral = getQuery(location.search, COLLATERAL_QUERY);
 
   if (!main || !collateral) return <Navigate to="/" />;
 
@@ -53,6 +43,7 @@ const BorrowAssets = ({ main, collateral }: Props) => {
         mainAmount={mainAmount}
         setCollateralAmount={setCollateralAmount}
         setMainAmount={setMainAmount}
+        tokenPrice={pair?.tokenPrice}
       />
       <StrategyCard
         pair={pair}

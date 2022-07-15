@@ -3,6 +3,7 @@ import GetToken from "@/images/GetToken";
 import MaxButton from "@/images/Max-button.png";
 import { borrowHooks } from "@/utils/borrowHooks";
 import LoadingSpinner from "@/components/base/LoadingSpinner";
+import { formatterWithDecimal } from "@/utils/dolarFormater";
 
 interface Props {
   isDisabled: boolean;
@@ -12,6 +13,7 @@ interface Props {
   mainAmount: string;
   setCollateralAmount: (amount: string) => void;
   setMainAmount: (amount: string) => void;
+  tokenPrice?: number;
 }
 
 interface ItemProps {
@@ -99,14 +101,12 @@ const BorrowCard = ({
   setCollateralAmount,
   setMainAmount,
   isDisabled,
+  tokenPrice,
 }: Props) => {
   const { t } = useTranslation();
   const useContract = borrowHooks();
 
-  const { inProgress, assetBalance, depositedCollateral, borrow, status } =
-    useContract();
-
-  console.log("a", collateralAmount.length);
+  const { inProgress, assetBalance, borrow, status } = useContract();
 
   return (
     <div className="w-full md:basis-1/2 md:bg-navy-300 rounded-[30px]">
@@ -121,7 +121,7 @@ const BorrowCard = ({
         updateValue={(amount: string) => setCollateralAmount(amount)}
         token={collateral}
         disabled={inProgress}
-        price="1011.10"
+        price={formatterWithDecimal.format(tokenPrice || 0)}
       />
 
       <BorrowItem
