@@ -23,6 +23,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        "active-blue": "#0A93EC",
         orange: {
           100: "#FFE3D6",
           200: "#FFD5C2",
@@ -76,6 +77,10 @@ module.exports = {
           800: "#2E2E30",
           900: "#2B2B2D",
           950: "#161617",
+        },
+        navy: {
+          300: "#202231",
+          400: "#181525",
         },
       },
     },

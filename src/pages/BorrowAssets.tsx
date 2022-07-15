@@ -1,6 +1,5 @@
 import { useLocation, Navigate } from "react-router-dom";
-import CardLeft from "@/components/borrow/CardLeft";
-import CardRight from "@/components/borrow/CardRight";
+import StrategyCard from "@/components/borrow/StrategyCard";
 import BorrowCard from "@/components/borrow/BorrowCard";
 import { WalletContext } from "@/providers/WalletContext";
 import { useContext, useState } from "react";
@@ -43,8 +42,7 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   );
 
   return (
-    <div className="md:flex md:gap-x-4 md:pt-10">
-      <CardLeft />
+    <div className="my-8 mx-2 md:mx-8 md:flex justify-center gap-4">
       <BorrowCard
         main={main}
         collateral={collateral}
@@ -54,7 +52,7 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
         setCollateralAmount={setCollateralAmount}
         setMainAmount={setMainAmount}
       />
-      <CardRight
+      <StrategyCard
         pair={pair}
         main={main}
         collateral={collateral}

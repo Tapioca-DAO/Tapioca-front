@@ -33,13 +33,6 @@ const Header = () => {
       </NavLink>
       <NavLink
         onClick={() => setOpen(false)}
-        to="/borrow-test"
-        className={({ isActive }) => `px-1 ${isActive ? "text-blue-300" : ""}`}
-      >
-        {t("header.links.borrowTest")}
-      </NavLink>
-      <NavLink
-        onClick={() => setOpen(false)}
         to="/flashloans"
         className={({ isActive }) => `px-1 ${isActive ? "text-blue-300" : ""}`}
       >

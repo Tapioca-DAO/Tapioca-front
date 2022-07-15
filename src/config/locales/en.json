@@ -15,7 +15,7 @@
     }
   },
   "borrow": {
-    "borrow": "borrow",
+    "borrow": "Borrow",
     "borrowAgainstYourTokens": "<0>borrow</0> against your tokens liquidi<0>tea</0>, <1>without selling</1> them!",
     "chooseMainToken": "Choose the token you want to borrow",
     "chooseBorrowToken": "Choose what token you want to borrow against",
@@ -32,9 +32,6 @@
     "apr": "APR",
     "liquidity": "Liquidity",
     "borrowAssets": {
-      "addCollateral": "Add collateral in order to borrow assets",
-      "addCollateral_mobile": "Add collateral in order to borrow",
-      "gainExposureToTokens": "Gain exposure to tokens without reducing your assets. Leverage will enable you to take short positions against assets and earn from downside movements.",
       "borrowToken": "borrow {{token}}",
       "collateral": "Collateral",
       "oracle": "Oracle",

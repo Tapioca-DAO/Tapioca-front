@@ -19,10 +19,6 @@ const App = () => {
               <Route path="/" element={<Outlet />}>
                 <Route index element={<Borrow />} />
                 <Route path="borrow" element={<BorrowAssets disabled />} />
-                <Route
-                  path="borrow-test"
-                  element={<BorrowAssets main="WETH" collateral="USDC" />}
-                />
                 <Route path="flashloans" element={<Flashloans />} />
                 <Route path="loan" element={<Loan />} />
               </Route>

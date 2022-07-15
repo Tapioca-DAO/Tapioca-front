@@ -5,6 +5,7 @@ const LoadingSpinner = ({
   small = false,
   xsmall = false,
   xxsmall = false,
+  customColor = "fill-zinc-400",
 }) => {
   const finalClassName = ["mr-2", "animate-spin"];
 
@@ -35,7 +36,7 @@ const LoadingSpinner = ({
   return (
     <span className={finalClassName.filter(Boolean).join(" ")}>
       <svg
-        className={["fill-zinc-400", "w-full h-auto"].join(" ")}
+        className={["w-full h-auto", customColor].join(" ")}
         viewBox="0 0 118 118"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"

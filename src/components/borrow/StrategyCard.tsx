@@ -39,7 +39,7 @@ const SmallArrow = () => (
   </svg>
 );
 
-const CardRight = ({
+const StrategyCard = ({
   pair,
   main,
   collateral,
@@ -71,7 +71,7 @@ const CardRight = ({
         ).toFixed(3)} ${main}`;
 
   return (
-    <div className="basis-1/4 md:bg-grey-950 md:rounded-[30px] py-10 md:p-4 md:px-8">
+    <div className="basis-1/4 md:bg-navy-300 md:rounded-[30px] py-10 md:p-4 md:px-8">
       <div>
         <Bubbles className="px-8" />
       </div>
@@ -153,4 +153,4 @@ const CardRight = ({
   );
 };
 
-export default CardRight;
+export default StrategyCard;
