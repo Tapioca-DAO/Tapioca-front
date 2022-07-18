@@ -44,6 +44,11 @@ const BorrowAssets = () => {
         setCollateralAmount={setCollateralAmount}
         setMainAmount={setMainAmount}
         collateralPrice={pair?.collateralPrice}
+        liquidation={pair?.liquidation || 0}
+        apr={pair?.apr || 0}
+        ltv={pair?.ltv || 0}
+        oracle={pair?.oracle}
+        strategy={pair?.strategy}
       />
     </div>
   );

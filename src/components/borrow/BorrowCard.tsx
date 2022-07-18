@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
-import GetToken from "@/images/GetToken";
-import MaxButton from "@/images/Max-button.png";
 import { borrowHooks } from "@/utils/borrowHooks";
-import LoadingSpinner from "@/components/base/LoadingSpinner";
 import { formatterWithDecimal } from "@/utils/dolarFormater";
+import LoadingSpinner from "@/components/base/LoadingSpinner";
+import LiquidationPrice from "@/components/borrow/LiquidationPrice";
+import MaxButton from "@/images/Max-button.png";
+import GetToken from "@/images/GetToken";
 
 interface Props {
   isDisabled: boolean;
@@ -14,6 +15,11 @@ interface Props {
   setCollateralAmount: (amount: string) => void;
   setMainAmount: (amount: string) => void;
   collateralPrice?: number;
+  liquidation: number;
+  apr: number;
+  oracle?: string;
+  strategy?: string;
+  ltv: number;
 }
 
 interface ItemProps {
@@ -101,6 +107,11 @@ const BorrowCard = ({
   setMainAmount,
   isDisabled,
   collateralPrice,
+  liquidation,
+  apr,
+  ltv,
+  oracle,
+  strategy,
 }: Props) => {
   const { t } = useTranslation();
   const useContract = borrowHooks();
@@ -114,6 +125,14 @@ const BorrowCard = ({
     isApproving,
     approve,
   } = useContract();
+
+  const liquidationPrice =
+    !collateralAmount || !mainAmount
+      ? t("borrow.borrowAssets.none")
+      : `1 ${collateral} = ${(
+          (liquidation * parseFloat(mainAmount)) /
+          parseFloat(collateralAmount)
+        ).toFixed(3)} ${main}`;
 
   return (
     <div className="w-full md:bg-navy-300 rounded-[30px] p-4">
@@ -145,11 +164,13 @@ const BorrowCard = ({
           </div>
         </div>
 
-        <div className="shadow-inner flex p-4 rounded-[14px] border border-grey-600">
-          <div className="text-xs leading-4 font-bold text-grey-100">
-            Liquidation price
-          </div>
-        </div>
+        <LiquidationPrice
+          liquidationPrice={liquidationPrice}
+          apr={apr}
+          ltv={ltv}
+          oracle={oracle}
+          strategy={strategy}
+        />
       </div>
 
       <div className="md:px-8 px-4">
