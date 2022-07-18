@@ -10,10 +10,9 @@ interface ErrorMessage {
 }
 
 const STATUS = {
-  APPROVING: "APPROVING",
-  DEPOSITING: "DEPOSITING",
-  BORROWING: "BORROWING",
-  WITHDRAWING: "WITHDRAWING",
+  DEPOSITING: "Depositing",
+  BORROWING: "Borrowing",
+  WITHDRAWING: "ithdrawing",
 };
 
 export const borrowHooks = () => {
@@ -25,9 +24,12 @@ export const borrowHooks = () => {
   if (!signer || !address) {
     return () => ({
       inProgress: false,
+      isApproved: false,
+      isApproving: false,
       assetBalance: "0",
       depositedCollateral: "0",
       borrow: () => {},
+      approve: () => {},
       status: "",
     });
   }
@@ -39,6 +41,8 @@ export const borrowHooks = () => {
     const [assetBalance, setAssetBalance] = useState("0");
     const [depositedCollateral, setDepositedCollateral] = useState("0");
     const [inProgress, setInProgress] = useState(false);
+    const [isApproved, setIsApproved] = useState(false);
+    const [isApproving, setIsApproving] = useState(false);
 
     const [status, setStatus] = useState("");
 
@@ -109,19 +113,34 @@ export const borrowHooks = () => {
     };
 
     const approveTokensAndSetBarApproval = async () => {
-      await (
-        await weth.approve(beachbar.address, ethers.constants.MaxUint256)
-      ).wait();
+      setIsApproving(true);
+      let isApproved = false;
 
-      await (await yieldBox.setApprovalForAll(mixologist.address, true)).wait();
+      try {
+        await (
+          await weth.approve(beachbar.address, ethers.constants.MaxUint256)
+        ).wait();
+
+        await (
+          await yieldBox.setApprovalForAll(mixologist.address, true)
+        ).wait();
+
+        isApproved = true;
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
+      }
+
+      setIsApproving(false);
+      setIsApproved(isApproved);
     };
 
     const borrow = async ({ collateralAmount = 0, borrowAmount = 0 }) => {
       setInProgress(true);
 
+      if (!isApproved) return;
+
       try {
-        setStatus(STATUS.APPROVING);
-        await approveTokensAndSetBarApproval();
         setStatus(STATUS.DEPOSITING);
         await usdcDepositAndAddCollateral(collateralAmount);
         setStatus(STATUS.BORROWING);
@@ -134,14 +153,42 @@ export const borrowHooks = () => {
       }
     };
 
+    const checkApproved = async () => {
+      let isApproved = false;
+      try {
+        const wethRes = await weth.allowance(address, beachbar.address);
+        const allRes = await yieldBox.isApprovedForAll(
+          address,
+          mixologist.address
+        );
+
+        isApproved = ethers.BigNumber.from(wethRes ?? 0).gt(0) && allRes;
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
+      }
+
+      setIsApproved(isApproved);
+    };
+
     useEffect(() => {
       if (!inProgress) {
         getAssetInBeachbar();
         getDepositedCollateral();
+        checkApproved();
       }
     }, [inProgress]);
 
-    return { assetBalance, depositedCollateral, inProgress, borrow, status };
+    return {
+      assetBalance,
+      depositedCollateral,
+      inProgress,
+      borrow,
+      status,
+      isApproved,
+      approve: approveTokensAndSetBarApproval,
+      isApproving,
+    };
   };
 
   return useContract;

@@ -52,7 +52,6 @@ const BorrowItem = ({
             type="text"
             pattern="^[0-9]*[.,]?[0-9]*$"
             placeholder="0.00"
-            min="0"
             className="relative font-bold outline-none border-none flex-auto overflow-hidden overflow-ellipsis placeholder-low-emphesis focus:placeholder-primary leading-[36px] focus:placeholder:text-low-emphesis flex-grow w-full text-left bg-transparent text-inherit disabled:cursor-not-allowed"
             value={value}
             onChange={(e) => updateValue(e.target.value)}
@@ -106,7 +105,15 @@ const BorrowCard = ({
   const { t } = useTranslation();
   const useContract = borrowHooks();
 
-  const { inProgress, assetBalance, borrow, status } = useContract();
+  const {
+    inProgress,
+    assetBalance,
+    borrow,
+    status,
+    isApproved,
+    isApproving,
+    approve,
+  } = useContract();
 
   return (
     <div className="w-full md:bg-navy-300 rounded-[30px] p-4">
@@ -146,46 +153,37 @@ const BorrowCard = ({
       </div>
 
       <div className="md:px-8 px-4">
-        {/* <button
-          onClick={() =>
-            borrow({
-              collateralAmount: collateralAmount
-                ? parseFloat(collateralAmount)
-                : 0,
-              borrowAmount: mainAmount ? parseFloat(mainAmount) : 0,
-            })
-          }
+        <button
+          onClick={approve}
           className="w-full text-lg mt-8 bg-active-blue hover:bg-active-blue/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
-          disabled={
-            isDisabled || !mainAmount || !collateralAmount || inProgress
-          }
+          disabled={isDisabled || isApproved || isApproving}
         >
-          {inProgress ? (
+          {isApproving ? (
             <div className="flex justify-center items-center font-bold">
               <LoadingSpinner xsmall customColor="fill-white" />
-              {status.toLocaleLowerCase() || "Loading"}
+              Approving
             </div>
           ) : (
             <span>
               <span className="font-bold">{t("borrow.approve")}</span> Moonbar
             </span>
           )}
-        </button> */}
-
-        {/* active:to-black/40 disabled:pointer-events-none disabled:opacity-40 !bg-gradient-to-r  hover:from-blue/80 hover:to-pink-600/80 focus:from-blue/80 focus:to-pink-600/80 active:from-blue/70 active:to-pink-600/70 focus:border-blue-700 rounded px-4 h-[52px] font-bold flex items-center justify-center gap-1 */}
+        </button>
 
         <button
           onClick={() =>
             borrow({
-              collateralAmount: collateralAmount
-                ? parseFloat(collateralAmount)
-                : 0,
-              borrowAmount: mainAmount ? parseFloat(mainAmount) : 0,
+              collateralAmount: parseFloat(collateralAmount) || 0,
+              borrowAmount: parseFloat(mainAmount) || 0,
             })
           }
-          className="w-full text-lg mt-8 bg-gradient-to-r from-active-blue to-pink-500 hover:bg-active-blue/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
+          className="w-full text-lg mt-2 bg-gradient-to-r from-active-blue to-pink-500 hover:bg-active-blue/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
           disabled={
-            isDisabled || !mainAmount || !collateralAmount || inProgress
+            isDisabled ||
+            !isApproved ||
+            !mainAmount ||
+            !collateralAmount ||
+            inProgress
           }
         >
           {inProgress ? (
@@ -194,7 +192,7 @@ const BorrowCard = ({
               {status.toLocaleLowerCase() || "Loading"}
             </div>
           ) : (
-            <span className="font-bold">Approve, Deposit and Borrow</span>
+            "Deposit and Borrow"
           )}
         </button>
       </div>
