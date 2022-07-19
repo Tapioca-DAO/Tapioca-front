@@ -9,6 +9,7 @@ module.exports = {
       center: true,
     },
     fontSize: {
+      xxs: ".65rem",
       xs: ".75rem",
       sm: ".875rem",
       base: "1rem",

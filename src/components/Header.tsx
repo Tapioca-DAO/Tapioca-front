@@ -26,7 +26,7 @@ const Header = () => {
     <>
       <NavLink
         onClick={() => setOpen(false)}
-        to="/"
+        to="/borrow"
         className={({ isActive }) => `px-1 ${isActive ? "text-blue-300" : ""}`}
       >
         {t("header.links.borrow")}

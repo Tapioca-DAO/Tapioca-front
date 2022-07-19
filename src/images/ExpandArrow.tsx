@@ -19,7 +19,7 @@ const ExpandArrow = ({ isExpanded = false, expand }: Props) => {
         aria-hidden="true"
         width="20"
         className={[
-          "transition hover:text-white",
+          "transition text-grey-200 hover:text-white",
           isExpanded ? "transform rotate-180" : "",
         ].join(" ")}
       >

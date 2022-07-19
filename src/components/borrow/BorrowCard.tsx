@@ -3,6 +3,7 @@ import { borrowHooks } from "@/utils/borrowHooks";
 import { formatterWithDecimal } from "@/utils/dolarFormater";
 import LoadingSpinner from "@/components/base/LoadingSpinner";
 import LiquidationPrice from "@/components/borrow/LiquidationPrice";
+import LevaragePosition from "@/components/borrow/LevaragePosition";
 import MaxButton from "@/images/Max-button.png";
 import GetToken from "@/images/GetToken";
 
@@ -136,7 +137,7 @@ const BorrowCard = ({
 
   return (
     <div className="w-full md:bg-navy-300 rounded-[30px] p-4">
-      <div className="text-4xl bg-navy-400 rounded-[30px] text-center mb-20">
+      <div className="text-3xl bg-navy-400 rounded-[30px] text-center mb-20 py-1">
         {t("borrow.borrow")}
       </div>
 
@@ -158,11 +159,13 @@ const BorrowCard = ({
       />
 
       <div className="mx-5 flex flex-col gap-2">
-        <div className="shadow-inner flex p-4 rounded-[14px] border border-grey-600">
-          <div className="text-xs leading-4 font-bold text-grey-100">
-            Levarage position
-          </div>
-        </div>
+        {collateralAmount ? (
+          <LevaragePosition
+            liquidationPrice={liquidationPrice}
+            liquidation={liquidation}
+            collateralAmount={collateralAmount}
+          />
+        ) : null}
 
         <LiquidationPrice
           liquidationPrice={liquidationPrice}
