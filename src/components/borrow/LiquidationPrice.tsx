@@ -29,7 +29,10 @@ const LiquidationPrice = ({
         <div className="flex items-center justify-between gap-2 pl-1">
           <div className="flex items-center gap-3">
             <div className="text-xs leading-4 font-bold flex gap-2 -ml-1">
-              <Info message="" />
+              <Info
+                message="When the value of your collateral becomes less than the asset you borrow, your position gets liquidated."
+                subMessage="When a non-leveraged positions gets liquidated, you lose the collateral but you can keep the borrowed assets"
+              />
               Liquidation Price
             </div>
             <div className="text-xs leading-4 font-bold cursor-pointer select-none py-1 rounded rounded-full cursor-pointer hover:text-high-emphesis">

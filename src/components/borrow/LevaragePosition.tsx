@@ -30,7 +30,10 @@ const LevaragePosition = ({
         <div className="flex items-center justify-between gap-2">
           <div className="text-sm leading-5 font-bold flex items-center">
             Leverage position
-            <Info />
+            <Info
+              message="Leverage your position by swapping the received borrowed WETH for BUSD and use that as extra collateral to borrow more WETH."
+              subMessage="Please note that you won't receive any tokens when you use leverage."
+            />
           </div>
 
           <div className="flex items-center gap-2">
