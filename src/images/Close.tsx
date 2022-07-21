@@ -30,7 +30,7 @@ export const SmallClose = ({
         d="M0 0L10 10M10 0L0 10"
         stroke="currentColor"
         stroke-width="2"
-        stroke-linecap="round"
+        strokeLinecap="round"
       ></path>
     </svg>
   );

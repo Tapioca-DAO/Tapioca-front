@@ -34,8 +34,8 @@ const Toggle = ({ isActive = false, toggle = () => {} }) => (
           className="text-navy-400"
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M5 13l4 4L19 7"
           ></path>
         </svg>
@@ -48,8 +48,8 @@ const Toggle = ({ isActive = false, toggle = () => {} }) => (
           fill="none"
           stroke="currentColor"
           stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
           className="cursor-pointer"
         >
           <line x1="18" y1="6" x2="6" y2="18"></line>
