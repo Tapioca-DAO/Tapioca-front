@@ -28,7 +28,7 @@ const BorrowCardAsset = ({
       </div>
     </div>
 
-    <div className="flex justify-between items-center px-1 mt-4 gap-6">
+    <div className="flex justify-between items-center px-1 mt-4 gap-4">
       <div className="text-2xl leading-7 tracking-[-0.01em] font-bold relative flex items-baseline flex-grow overflow-hidden">
         <div className="flex w-full">
           <input
@@ -67,7 +67,7 @@ const BorrowCardAsset = ({
       </div>
       {balance && (
         <button
-          className="text-sm text-grey-200 hover:text-white"
+          className="text-xs text-grey-200 hover:text-white whitespace-nowrap"
           onClick={() => updateValue(balance)}
         >
           Balance: {balance}
