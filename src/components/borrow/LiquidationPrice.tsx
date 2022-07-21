@@ -63,9 +63,10 @@ const LiquidationPrice = ({
         <div className="flex items-center">
           <span>0 {collateral}</span>
           <SmallArrow />
-          <span className="text-grey-100">
-            {collateralAmount} {collateral}
+          <span className="text-grey-100 text-ellipsis overflow-hidden max-w-[80px]">
+            {collateralAmount}
           </span>
+          <span className="ml-0.5 text-grey-100">{collateral}</span>
         </div>
       ),
     },
@@ -76,9 +77,10 @@ const LiquidationPrice = ({
         <div className="flex items-center">
           <span>0 {main}</span>
           <SmallArrow />
-          <span className="text-grey-100">
-            {mainAmount} {main}
+          <span className="text-grey-100 text-ellipsis overflow-hidden max-w-[80px]">
+            {mainAmount}
           </span>
+          <span className="ml-0.5 text-grey-100">{main}</span>
         </div>
       ),
     },
