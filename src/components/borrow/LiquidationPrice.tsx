@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Info from "@/components/base/Info";
 import ExpandArrow from "@/images/ExpandArrow";
+import LiquidationDisclosure from "./LiquidationDisclosure";
+import SmallArrow from "@/images/SmallArrow";
 
 interface Props {
   liquidationPrice: string;
@@ -8,6 +10,11 @@ interface Props {
   oracle?: string;
   strategy?: string;
   ltv: number;
+  mainAmount: string;
+  collateralAmount: string;
+  main: string;
+  collateral: string;
+  positionHealth: string;
 }
 const LiquidationPrice = ({
   liquidationPrice,
@@ -15,8 +22,68 @@ const LiquidationPrice = ({
   ltv,
   oracle,
   strategy,
+  collateralAmount,
+  mainAmount,
+  main,
+  collateral,
+  positionHealth,
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const items = [
+    {
+      hide: !collateralAmount && !mainAmount,
+      label: "Position Health",
+      value: (
+        <div className="flex items-center text-grey-200/80">
+          0%
+          <SmallArrow />
+          <span className="text-grey-100"> {positionHealth}%</span>
+        </div>
+      ),
+    },
+    { label: "APR (annualized)", value: `${apr}%` },
+    { label: "Loan to Value (LTV)", value: `${ltv}%` },
+    {
+      label: (
+        <div className="flex items-center">
+          BentoBox strategy
+          <Info message="BentoBox strategies can create yield for your liquidity while it is not lent out." />
+        </div>
+      ) as JSX.Element,
+      value: <span className="text-active-blue">{strategy}</span>,
+    },
+  ];
+
+  const total = [
+    {
+      hide: !collateralAmount,
+      label: "Total Collateral",
+      value: (
+        <div className="flex items-center">
+          <span>0 {collateral}</span>
+          <SmallArrow />
+          <span className="text-grey-100">
+            {collateralAmount} {collateral}
+          </span>
+        </div>
+      ),
+    },
+    {
+      hide: !mainAmount,
+      label: "Total Borrowed",
+      value: (
+        <div className="flex items-center">
+          <span>0 {main}</span>
+          <SmallArrow />
+          <span className="text-grey-100">
+            {mainAmount} {main}
+          </span>
+        </div>
+      ),
+    },
+    { label: "Oracle", value: oracle || "" },
+  ];
 
   return (
     <div>
@@ -42,52 +109,8 @@ const LiquidationPrice = ({
           <ExpandArrow isExpanded={isOpen} expand={() => setIsOpen(!isOpen)} />
         </div>
         {isOpen && (
-          <div>
-            <div className="px-1 pt-2" id="headlessui-disclosure-panel-85">
-              <div className="flex flex-col divide-y divide-dark-850">
-                <div className="flex flex-col gap-1 pb-2">
-                  <div className="flex justify-between gap-4">
-                    <div className="text-xs leading-4 font-medium currentColor">
-                      APR (annualized)
-                    </div>
-                    <div className="text-xs leading-4 font-medium text-right">
-                      {apr}%
-                    </div>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <div className="text-xs leading-4 font-medium currentColor">
-                      Loan to Value (LTV)
-                    </div>
-                    <div className="text-xs leading-4 font-medium text-right">
-                      {ltv}%
-                    </div>
-                  </div>
-                  <div className="flex justify-between gap-4">
-                    <div className="text-xs leading-4 font-medium flex items-center">
-                      BentoBox strategy
-                      <Info />
-                    </div>
-                    <div
-                      className="text-xs leading-4 font-medium cursor-pointer select-none text-active-blue text-right"
-                      id="headlessui-popover-button-91"
-                      aria-expanded="false"
-                    >
-                      {strategy}
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-1 pt-2">
-                  <div className="flex justify-between gap-4">
-                    <div className="text-xs leading-4 font-medium text-secondary">
-                      Oracle
-                    </div>
-                    <div className="text-xs leading-4 font-medium text-right text-secondary">
-                      {oracle}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="px-1 pt-2">
+            <LiquidationDisclosure items={items} results={total} />
           </div>
         )}
       </div>

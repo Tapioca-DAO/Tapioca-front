@@ -20,6 +20,7 @@ interface Props {
   oracle?: string;
   strategy?: string;
   ltv: number;
+  health?: number;
 }
 
 const BorrowCard = ({
@@ -36,6 +37,7 @@ const BorrowCard = ({
   ltv,
   oracle,
   strategy,
+  health = 0,
 }: Props) => {
   const { t } = useTranslation();
   const useContract = borrowHooks();
@@ -57,6 +59,14 @@ const BorrowCard = ({
           (liquidation * parseFloat(mainAmount)) /
           parseFloat(collateralAmount)
         ).toFixed(3)} ${main}`;
+
+  const positionHealth =
+    !collateralAmount || !mainAmount
+      ? "0"
+      : (
+          (health * parseFloat(mainAmount)) /
+          parseFloat(collateralAmount)
+        ).toFixed(5);
 
   return (
     <div className="w-full md:bg-navy-300 rounded-[30px] p-4">
@@ -96,6 +106,11 @@ const BorrowCard = ({
           ltv={ltv}
           oracle={oracle}
           strategy={strategy}
+          collateralAmount={collateralAmount}
+          mainAmount={mainAmount}
+          main={main}
+          collateral={collateral}
+          positionHealth={positionHealth}
         />
       </div>
 

@@ -49,6 +49,7 @@ const BorrowAssets = () => {
         ltv={pair?.ltv || 0}
         oracle={pair?.oracle}
         strategy={pair?.strategy}
+        health={pair?.health}
       />
     </div>
   );

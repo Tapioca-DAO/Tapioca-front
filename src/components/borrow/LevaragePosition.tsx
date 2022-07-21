@@ -17,7 +17,7 @@ const LevaragePosition = ({
   liquidation,
 }: Props) => {
   const [leverage, setLeverage] = useState(0);
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
