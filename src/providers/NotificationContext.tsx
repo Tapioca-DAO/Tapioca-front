@@ -48,7 +48,9 @@ export const NotificationProvider = ({
       <div className="absolute z-[99999] top-3 left-3 max-w-md">
         <div className="bg-red-500 shadow-xl shadow-red-600/60 rounded p-2 overflow-hidden flex justify-between items-center">
           <p className="text-sm text-white pr-4">{message.split(";")[0]}</p>
-          <SmallClose onClick={clear} />
+          <div>
+            <SmallClose onClick={clear} />
+          </div>
         </div>
       </div>
     );
