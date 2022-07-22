@@ -2,6 +2,7 @@ import { Route, Routes, BrowserRouter, Outlet } from "react-router-dom";
 import { WalletProvider } from "@/providers/WalletContext";
 import { NotificationProvider } from "@/providers/NotificationContext";
 import Header from "@/components/Header";
+import HelpModal from "@/components/HelpModal";
 import Borrow from "@/pages/Borrow";
 import BorrowAssets from "@/pages/BorrowAssets";
 import Flashloans from "@/pages/Flashloans";
@@ -23,6 +24,8 @@ const App = () => {
                 <Route path="loan" element={<Loan />} />
               </Route>
             </Routes>
+
+            <HelpModal video="https://youtu.be/PcEzWRRkNcQ" />
           </div>
         </BrowserRouter>
       </NotificationProvider>
