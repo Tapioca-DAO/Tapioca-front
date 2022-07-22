@@ -29,6 +29,7 @@
     "oracle": "Oracle",
     "borrowed": "Borrowed",
     "available": "Available",
+    "utilization": "Utilization",
     "apr": "APR",
     "liquidity": "Liquidity",
     "borrowAssets": {

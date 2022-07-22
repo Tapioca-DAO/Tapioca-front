@@ -158,6 +158,38 @@ const MATIC = {
   protocolName: "",
 };
 
+const FTM = {
+  name: "",
+  symbol: "FTM",
+  address: "",
+  decimals: "",
+  protocolName: "",
+};
+
+const BNB = {
+  name: "",
+  symbol: "BNB",
+  address: "",
+  decimals: "",
+  protocolName: "",
+};
+
+const OP = {
+  name: "",
+  symbol: "OP",
+  address: "",
+  decimals: "",
+  protocolName: "",
+};
+
+const AVAX = {
+  name: "",
+  symbol: "AVAX",
+  address: "",
+  decimals: "",
+  protocolName: "",
+};
+
 export const TOKENS_SYMBOLS = {
   WETH: WETH.symbol,
   ETH: ETH.symbol,
@@ -177,6 +209,11 @@ export const TOKENS_SYMBOLS = {
   COMP: COMP.symbol,
   LRC: LRC.symbol,
   COMBO: COMBO.symbol,
+  FTM: FTM.symbol,
+  MATIC: MATIC.symbol,
+  BNB: BNB.symbol,
+  OP: OP.symbol,
+  AVAX: AVAX.symbol,
 };
 
 export const BORROW_TOKEN_LIST = [USDC, DAI, ETH];

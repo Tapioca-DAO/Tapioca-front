@@ -51,7 +51,11 @@ const LiquidationPrice = ({
           <Info message="BentoBox strategies can create yield for your liquidity while it is not lent out." />
         </div>
       ) as JSX.Element,
-      value: <span className="text-active-blue-100">{strategy}</span>,
+      value: strategy ? (
+        <span className="text-active-blue-100">{strategy}</span>
+      ) : (
+        "None"
+      ),
     },
   ];
 

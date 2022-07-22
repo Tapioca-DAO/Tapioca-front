@@ -12,7 +12,7 @@ import formatter from "@/utils/dolarFormater";
 import { BORROW_PAIR_LIST } from "@/utils/constants";
 
 const HEADER_BASE_STYLES =
-  "p-2 w-1/6 text-center hidden md:flex flex-col justify-center";
+  "p-2 w-1/5 text-center hidden md:flex flex-col justify-center";
 const MARKET_STYLES =
   "flex items-center justify-between p-2 md:w-24 border-b-2 border-green-300 md:border-0";
 
@@ -47,13 +47,12 @@ const Borrow = () => {
           <div className={HEADER_BASE_STYLES}>{t("borrow.asset")}</div>
           <div className={HEADER_BASE_STYLES}>{t("borrow.collateral")}</div>
           <div className={HEADER_BASE_STYLES}>{t("borrow.oracle")}</div>
-          <div className={HEADER_BASE_STYLES}>{t("borrow.borrowed")}</div>
-          <div className={HEADER_BASE_STYLES}>{t("borrow.available")}</div>
+          <div className={HEADER_BASE_STYLES}>{t("borrow.utilization")}</div>
           <div className={HEADER_BASE_STYLES}>{t("borrow.apr")}</div>
         </div>
         {filteredList.map(
           (
-            { token, collateral, apr, oracle, borrowed, available, tokenPrice },
+            { token, collateral, apr, oracle, tokenLogo, collateralLogo },
             index
           ) => (
             <div
@@ -68,16 +67,11 @@ const Borrow = () => {
             >
               <div className={MARKET_STYLES}>
                 <div className="flex items-center">
-                  <GetToken
-                    token={token}
-                    isSelected
-                    className="w-10 h-10 z-0 -mr-3"
+                  <img
+                    src={collateralLogo}
+                    className="w-8 h-8 z-[1] -mr-2 rounded-full"
                   />
-                  <GetToken
-                    token={collateral}
-                    isSelected
-                    className="w-10 h-10 z-100"
-                  />
+                  <img src={tokenLogo} className="w-8 h-8" />
                 </div>
 
                 <div className="flex md:hidden items-center gap-1 text-xl">
@@ -98,17 +92,10 @@ const Borrow = () => {
               <div className={HEADER_BASE_STYLES}>{oracle}</div>
 
               <div className={HEADER_BASE_STYLES}>
-                <div className="text-lg">{formatter.format(borrowed)}</div>
-                <div className="text-xs text-zinc-400">
-                  {parseFloat((borrowed / tokenPrice).toFixed(3))} {token}
+                <div className="h-2 w-full rounded border border-pink-400 relative">
+                  <div className="absolute h-1.5 w-1 bg-pink-100 top-0"></div>
                 </div>
-              </div>
-
-              <div className={HEADER_BASE_STYLES}>
-                {formatter.format(available)}
-                <div className="text-xs text-zinc-400">
-                  {parseFloat((available / tokenPrice).toFixed(3))} {token}
-                </div>
+                <div className="text-xs pt-1">0 / $1.000.000 {token}</div>
               </div>
 
               <div className={HEADER_BASE_STYLES}>
