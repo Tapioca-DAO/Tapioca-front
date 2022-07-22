@@ -17,14 +17,13 @@ const LevaragePosition = ({
   liquidation,
 }: Props) => {
   const [leverage, setLeverage] = useState(0);
-  const [settingsOpen, setSettingsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div>
       <div
         className={[
-          "flex flex-col gap-3 border rounded-[14px] border-gray-600 px-4 p-2 shadow-inner rounded-[14px] transition",
+          "flex flex-col gap-3 border rounded-[14px] border-grey-600 px-4 p-2 shadow-inner rounded-[14px] transition",
           isOpen ? "bg-navy-400" : "",
         ].join(" ")}
       >

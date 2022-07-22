@@ -20,7 +20,7 @@ const BorrowCardAsset = ({
   price,
   isCollateral = false,
 }: Props) => (
-  <div className="bg-navy-400 border border-grey-600 mx-4 my-2 p-4 rounded-[14px]">
+  <div className="bg-navy-400 border border-grey-600 my-2 p-4 rounded-[14px]">
     <div className="flex items-center">
       <GetToken token={token} isSelected className="w-8 h-8" />
       <div className="font-bold text-lg ml-1">

@@ -69,8 +69,8 @@ const BorrowCard = ({
         ).toFixed(5);
 
   return (
-    <div className="w-full md:bg-navy-300 rounded-[30px] p-4">
-      <div className="text-3xl bg-navy-400 rounded-[30px] text-center mb-20 py-1">
+    <div className="w-full md:bg-navy-300 rounded-[30px] p-4 max-w-[496px]">
+      <div className="text-3xl bg-navy-400 rounded-[30px] text-center mb-14 py-1">
         {t("borrow.borrow")}
       </div>
 
@@ -91,7 +91,7 @@ const BorrowCard = ({
         disabled={inProgress}
       />
 
-      <div className="mx-5 flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
         {collateralAmount ? (
           <LevaragePosition
             liquidationPrice={liquidationPrice}
@@ -114,50 +114,48 @@ const BorrowCard = ({
         />
       </div>
 
-      <div className="md:px-8 px-4">
-        <button
-          onClick={approve}
-          className="w-full text-lg mt-8 bg-active-blue-100 hover:bg-active-blue-100/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
-          disabled={isDisabled || isApproved || isApproving}
-        >
-          {isApproving ? (
-            <div className="flex justify-center items-center font-bold">
-              <LoadingSpinner xsmall customColor="fill-white" />
-              Approving
-            </div>
-          ) : (
-            <span>
-              <span className="font-bold">{t("borrow.approve")}</span> Moonbar
-            </span>
-          )}
-        </button>
+      <button
+        onClick={approve}
+        className="w-full text-lg mt-8 bg-active-blue-100 hover:bg-active-blue-100/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
+        disabled={isDisabled || isApproved || isApproving}
+      >
+        {isApproving ? (
+          <div className="flex justify-center items-center font-bold">
+            <LoadingSpinner xsmall customColor="fill-white" />
+            Approving
+          </div>
+        ) : (
+          <span>
+            <span className="font-bold">{t("borrow.approve")}</span> Moonbar
+          </span>
+        )}
+      </button>
 
-        <button
-          onClick={() =>
-            borrow({
-              collateralAmount: parseFloat(collateralAmount) || 0,
-              borrowAmount: parseFloat(mainAmount) || 0,
-            })
-          }
-          className="w-full text-lg mt-2 bg-gradient-to-r from-active-blue-100 to-pink-500 hover:bg-active-blue-100/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
-          disabled={
-            isDisabled ||
-            !isApproved ||
-            !mainAmount ||
-            !collateralAmount ||
-            inProgress
-          }
-        >
-          {inProgress ? (
-            <div className="flex justify-center items-center font-bold">
-              <LoadingSpinner xsmall customColor="fill-white" />
-              {status.toLocaleLowerCase() || "Loading"}
-            </div>
-          ) : (
-            "Deposit and Borrow"
-          )}
-        </button>
-      </div>
+      <button
+        onClick={() =>
+          borrow({
+            collateralAmount: parseFloat(collateralAmount) || 0,
+            borrowAmount: parseFloat(mainAmount) || 0,
+          })
+        }
+        className="w-full text-lg mt-2 bg-gradient-to-r from-active-blue-100 to-pink-500 hover:bg-active-blue-100/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
+        disabled={
+          isDisabled ||
+          !isApproved ||
+          !mainAmount ||
+          !collateralAmount ||
+          inProgress
+        }
+      >
+        {inProgress ? (
+          <div className="flex justify-center items-center font-bold">
+            <LoadingSpinner xsmall customColor="fill-white" />
+            {status.toLocaleLowerCase() || "Loading"}
+          </div>
+        ) : (
+          "Deposit and Borrow"
+        )}
+      </button>
     </div>
   );
 };
