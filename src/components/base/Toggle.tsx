@@ -15,7 +15,7 @@ const Toggle = ({ isActive = false, toggle = () => {} }) => (
       id="toggle-expert-mode-button"
       className={
         isActive
-          ? "translate-x-[30px] bg-gradient-to-r from-active-blue to-pink-500 transition-colors transition-transform pointer-events-none p-1 rounded-full shadow-md ease-in-out duration-200 inline-flex items-center justify-center"
+          ? "translate-x-[30px] bg-gradient-to-r from-active-blue-200 to-pink-500 transition-colors transition-transform pointer-events-none p-1 rounded-full shadow-md ease-in-out duration-200 inline-flex items-center justify-center"
           : "translate-x-[2px] bg-gray-600 transition-colors transition-transform pointer-events-none p-1 rounded-full shadow-md ease-in-out duration-200 inline-flex items-center justify-center"
       }
       style={{

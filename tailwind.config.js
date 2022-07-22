@@ -24,7 +24,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        "active-blue": "#0A93EC",
+        "active-blue": {
+          100: "#0A93EC",
+          200: "#0993EC",
+        },
         orange: {
           100: "#FFE3D6",
           200: "#FFD5C2",

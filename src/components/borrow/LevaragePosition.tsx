@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Info from "@/components/base/Info";
 import Toggle from "@/components/base/Toggle";
-import Settings from "@/images/Settings";
+import Settings from "@/components/borrow/Settings";
 
 interface Props {
   liquidationPrice: string;
@@ -17,6 +17,7 @@ const LevaragePosition = ({
   liquidation,
 }: Props) => {
   const [leverage, setLeverage] = useState(0);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -44,7 +45,7 @@ const LevaragePosition = ({
                 setIsOpen(!isOpen);
               }}
             />
-            <Settings onClick={() => {}} />
+            <Settings />
           </div>
         </div>
         {isOpen && (
@@ -58,7 +59,7 @@ const LevaragePosition = ({
                   min={25}
                   value={leverage * 100}
                   max={200}
-                  className="w-full h-1 rounded-full appearance-none cursor-pointer range bg-active-blue/20"
+                  className="w-full h-1 rounded-full appearance-none cursor-pointer range bg-active-blue-100/20"
                 />
 
                 <div className="flex justify-between">

@@ -30,7 +30,7 @@ const Info = ({ message = "", subMessage = "" }) => {
         </svg>
       </div>
       {tipOpen && message ? (
-        <div className="absolute z-10 top-5 -right-[114px]">
+        <div className="absolute z-[100] top-5 -right-[114px]">
           <div className="w-[228px] shadow-lg bg-navy-800 rounded-lg border border-navy-100 p-2">
             <div className="flex flex-col gap-2 text-xs text-white font-light">
               <div className="leading-4">{message}</div>

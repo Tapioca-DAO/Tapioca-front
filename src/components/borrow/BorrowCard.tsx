@@ -117,7 +117,7 @@ const BorrowCard = ({
       <div className="md:px-8 px-4">
         <button
           onClick={approve}
-          className="w-full text-lg mt-8 bg-active-blue hover:bg-active-blue/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
+          className="w-full text-lg mt-8 bg-active-blue-100 hover:bg-active-blue-100/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
           disabled={isDisabled || isApproved || isApproving}
         >
           {isApproving ? (
@@ -139,7 +139,7 @@ const BorrowCard = ({
               borrowAmount: parseFloat(mainAmount) || 0,
             })
           }
-          className="w-full text-lg mt-2 bg-gradient-to-r from-active-blue to-pink-500 hover:bg-active-blue/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
+          className="w-full text-lg mt-2 bg-gradient-to-r from-active-blue-100 to-pink-500 hover:bg-active-blue-100/90 disabled:pointer-events-none disabled:opacity-40 rounded-[14px] h-[52px]"
           disabled={
             isDisabled ||
             !isApproved ||
