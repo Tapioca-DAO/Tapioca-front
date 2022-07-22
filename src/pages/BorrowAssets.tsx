@@ -1,5 +1,4 @@
 import { useLocation, Navigate } from "react-router-dom";
-import StrategyCard from "@/components/borrow/StrategyCard";
 import BorrowCard from "@/components/borrow/BorrowCard";
 import { WalletContext } from "@/providers/WalletContext";
 import { useContext, useState } from "react";

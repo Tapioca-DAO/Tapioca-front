@@ -71,6 +71,8 @@ export const BORROW_PAIR_LIST = [
     strategy: "Active",
     borrowed: 5777,
     available: 1728,
+    liquidation: 0,
+    health: 0,
   },
   {
     token: TOKENS.USDC,
@@ -85,6 +87,8 @@ export const BORROW_PAIR_LIST = [
     oracle: "Chainlink",
     borrowed: 0,
     available: 0,
+    liquidation: 0,
+    health: 0,
   },
   {
     token: TOKENS.USDC,
@@ -99,6 +103,8 @@ export const BORROW_PAIR_LIST = [
     oracle: "Chainlink",
     borrowed: 0,
     available: 5145,
+    liquidation: 0,
+    health: 0,
   },
   {
     token: TOKENS.USDC,
@@ -113,6 +119,8 @@ export const BORROW_PAIR_LIST = [
     oracle: "Chainlink",
     borrowed: 0,
     available: 1003,
+    liquidation: 0,
+    health: 0,
   },
   {
     token: TOKENS.USDC,
@@ -128,6 +136,8 @@ export const BORROW_PAIR_LIST = [
     strategy: "None",
     borrowed: 0,
     available: 0,
+    liquidation: 0,
+    health: 0,
   },
   {
     token: TOKENS.USDC,
@@ -143,6 +153,8 @@ export const BORROW_PAIR_LIST = [
     strategy: "None",
     borrowed: 0,
     available: 0,
+    liquidation: 0,
+    health: 0,
   },
 ];
 
